@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes">
+<title>Haber Banner Editörü Pro v12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alegreya:ital,wght@0,400;0,700;1,400&family=Anton&family=Archivo+Black&family=Arvo:wght@400;700&family=Asap:wght@400;700&family=Barlow+Condensed:wght@400;700&family=Bebas+Neue&family=Bitter:wght@400;700&family=Cabin:wght@400;700&family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Crimson+Text:wght@400;700&family=Dancing+Script:wght@700&family=DM+Sans:wght@400;700&family=EB+Garamond:wght@400;700&family=Exo+2:wght@400;700&family=Fira+Sans:wght@400;700&family=Fjalla+One&family=Fraunces:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@400;700&family=Inter:wght@400;700&family=Josefin+Sans:wght@400;700&family=Kanit:wght@400;700&family=Karla:wght@400;700&family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Libre+Franklin:wght@400;700&family=Lora:wght@400;700&family=Manrope:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Mulish:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Oswald:wght@300;400;700&family=Outfit:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=PT+Sans:wght@400;700&family=PT+Serif:wght@400;700&family=Quicksand:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;700&family=Source+Sans+3:wght@400;700&family=Source+Serif+4:wght@400;700&family=Space+Grotesk:wght@400;700&family=Teko:wght@400;700&family=Ubuntu:wght@400;700&family=Vollkorn:wght@400;700&family=Work+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+/* ── THEMES ── */
+:root{--accent:#f0a500;--adim:rgba(240,165,0,.13);--green:#2ecc71;--red:#e74c3c;--r:5px;--rs:3px;--tr:.15s ease;--nav-h:54px;--top-h:42px;--max-w:900px}
+[data-theme=dark]{--bg:#0e1018;--panel:#181b28;--panel2:#0f1119;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.14);--text:#e8eaf0;--muted:rgba(232,234,240,.44);--ibg:rgba(255,255,255,.05);--ihov:rgba(255,255,255,.09);--sh:0 14px 44px rgba(0,0,0,.7);--sel-bg:#181b28;--sel-fg:#e8eaf0;--sel-bd:rgba(255,255,255,.14)}
+[data-theme=light]{--bg:#f0f2f8;--panel:#fff;--panel2:#e8eaf2;--border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.17);--text:#1a1d2e;--muted:rgba(26,29,46,.5);--ibg:rgba(0,0,0,.04);--ihov:rgba(0,0,0,.07);--sh:0 6px 28px rgba(0,0,0,.14);--sel-bg:#fff;--sel-fg:#1a1d2e;--sel-bd:rgba(0,0,0,.18)}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:var(--bg);font-family:'Inter',sans-serif;font-size:13px;color:var(--text);display:flex;flex-direction:column;align-items:center;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+#shell{width:100%;max-width:var(--max-w);height:100%;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── TOPBAR ── */
+#topbar{height:var(--top-h);background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0;z-index:400;transition:background .2s}
+.tb-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;white-space:nowrap;padding-right:9px;border-right:1px solid var(--border)}
+.tb-logo em{color:var(--text);opacity:.3;font-style:normal;font-weight:300}
+.spacer{flex:1}
+.tib{background:var(--ibg);border:1px solid var(--border);border-radius:var(--rs);color:var(--muted);cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.tib:hover{background:var(--ihov);color:var(--text);border-color:var(--border2)}
+.tib.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+.btn-dl{background:linear-gradient(135deg,var(--accent),#c88800);border:none;color:#1a0800;font-weight:800;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;border-radius:var(--rs);padding:5px 11px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:filter var(--tr)}
+.btn-dl:hover{filter:brightness(1.1)}
+
+/* ── MAIN PUSH LAYOUT ── */
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+#canvas-wrap{flex:1 1 auto;min-height:50px;display:flex;flex-direction:column;overflow:hidden}
+#canvas-area{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;background:var(--bg);transition:background .2s}
+#canvas-area::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(240,165,0,.04) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(232,97,42,.04) 0%,transparent 50%);pointer-events:none}
+#bsw{transform-origin:center center;flex-shrink:0}
+
+/* ── BANNER 1920×540 ── */
+#banner{width:1920px;height:540px;position:relative;overflow:hidden;border-radius:6px;box-shadow:var(--sh);flex-shrink:0}
+#banner-body{position:absolute;inset:0;display:flex}
+#color-panel{position:absolute;inset:0;background:#1a1a2e;z-index:0}
+#photo-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#photo-fade.il{left:0;right:auto}
+
+/* ── TAGS — transparent, no band ── */
+#tag-bar{
+  position:absolute;z-index:10;
+  display:flex;flex-wrap:wrap;gap:10px;
+  padding:0;pointer-events:none;
+}
+#tag-bar.hidden{display:none}
+.tag-item{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;
+  padding:4px 14px 4px 10px;border-radius:4px;
+  text-shadow:1px 1px 6px rgba(0,0,0,.8);
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.tag-item .ts{opacity:.4}
+
+/* ── TEXT OVERLAY — inset 10% horiz ── */
+#text-overlay{
+  position:absolute;z-index:3;
+  display:flex;flex-direction:column;
+  padding:28px 0;
+  /* horizontal inset = 10% of BW = 192px */
+  left:192px;right:192px;
+  pointer-events:none;
+  bottom:0;
+}
+.text-block{padding:2px 0;position:relative;pointer-events:all}
+#main-text{
+  font-family:'Bebas Neue',sans-serif;font-size:100px;letter-spacing:2px;
+  color:#fff;line-height:.95;text-shadow:4px 4px 20px rgba(0,0,0,.95);
+  display:block;outline:none;min-width:20px;white-space:pre-wrap;word-break:break-word;
+}
+[contenteditable]:focus{outline:2px dashed rgba(240,165,0,.65);outline-offset:4px;border-radius:2px}
+.text-bg{position:absolute;inset:0;pointer-events:none;z-index:-1}
+
+/* ── TAG POS OVERLAY ── */
+#tpo{position:absolute;inset:0;z-index:20;display:none;pointer-events:none}
+#tpo.on{display:block;pointer-events:all}
+#tpg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);background:rgba(0,0,0,.5)}
+.tpc{display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:background var(--tr);color:rgba(255,255,255,.35);font-size:10px}
+.tpc:hover{background:rgba(240,165,0,.22);color:rgba(240,165,0,.9)}
+.tpc.sel{background:rgba(240,165,0,.3);border-color:rgba(240,165,0,.6);color:var(--accent)}
+
+/* ── PHOTO MINI BAR ── */
+#pmb{display:none;align-items:center;justify-content:center;gap:4px;padding:4px 8px;background:var(--panel2);border-top:1px solid var(--border);flex-shrink:0;transition:background .2s}
+#pmb.on{display:flex}
+.pmb-b{background:var(--ibg);border:1px solid var(--border2);border-radius:3px;color:var(--muted);cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all var(--tr);user-select:none}
+.pmb-b:hover{background:var(--ihov);color:var(--text)}
+.pmb-s{width:1px;height:14px;background:var(--border2);flex-shrink:0}
+.pmb-r{-webkit-appearance:none;width:60px;height:3px;background:rgba(128,128,128,.25);border-radius:2px;outline:none;cursor:pointer}
+.pmb-r::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--accent);border-radius:50%;cursor:pointer}
+.pmb-lbl{font-size:6.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+/* ── PANEL ZONE ── */
+#pz{flex:0 0 0px;overflow:hidden;display:flex;flex-direction:column;background:var(--panel);border-top:1px solid var(--border2);transition:flex-basis .25s cubic-bezier(.32,.72,0,1),background .2s}
+#sph{height:32px;display:flex;align-items:center;padding:0 11px;gap:7px;border-bottom:1px solid var(--border);flex-shrink:0}
+#spt{font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex:1}
+#spc-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:10px;padding:3px 5px;border-radius:3px;transition:all var(--tr)}
+#spc-btn:hover{color:var(--text);background:var(--ibg)}
+#spc{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+#spc::-webkit-scrollbar{width:3px}
+#spc::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+
+/* ── BOTTOM NAV ── */
+#bnav{height:var(--nav-h);background:var(--panel2);border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;z-index:500;transition:background .2s}
+.nb{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:6px;letter-spacing:.4px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);position:relative;padding:0;user-select:none}
+.nb i{font-size:14px}
+.nb:hover{color:var(--text);background:var(--ibg)}
+.nb.on{color:var(--accent)}
+.nb.on i{color:var(--accent)}
+.nb.on::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--accent);border-radius:0 0 3px 3px}
+
+/* ── FLOATING TOOLBAR ── */
+#ftb{position:fixed;z-index:9000;background:var(--panel2);border:1px solid var(--border2);border-radius:7px;padding:3px 5px;display:none;align-items:center;gap:2px;box-shadow:var(--sh);pointer-events:all;transition:background .2s}
+#ftb.on{display:flex}
+.fb{background:none;border:1px solid transparent;border-radius:3px;color:var(--muted);cursor:pointer;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.fb:hover{background:var(--ibg);color:var(--text);border-color:var(--border2)}
+.fb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+.fbs{width:1px;height:14px;background:var(--border2);margin:0 2px;flex-shrink:0}
+.fc{position:relative;width:26px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid transparent;border-radius:3px;transition:all var(--tr)}
+.fc:hover{background:var(--ibg);border-color:var(--border2)}
+.fc input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.fc i{font-size:10px;color:var(--accent);pointer-events:none}
+
+/* ── FORM ── */
+.fl{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.rf{display:flex;flex-direction:column;gap:3px}
+.rf label,.rf>span{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.rf textarea,.rf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);padding:5px 8px;font-size:13px;outline:none;resize:vertical;min-height:30px;font-family:inherit;transition:border-color var(--tr),background .2s,color .2s;width:100%}
+.rf textarea{min-height:44px}
+.rf textarea:focus,.rf input[type=text]:focus{border-color:var(--accent)}
+.cr{display:flex;gap:6px}
+.ci{display:flex;flex-direction:column;gap:3px;flex:1}
+.ci label,.ci>span{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.cpw{display:flex;align-items:center;gap:4px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:3px 6px}
+.cpw input[type=color]{width:15px;height:15px;border:none;border-radius:2px;cursor:pointer;background:none;padding:0;flex-shrink:0}
+.cpw span{font-size:8.5px;color:var(--muted);font-family:monospace}
+.sf{display:flex;flex-direction:column;gap:3px}
+.sf label{font-size:7.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.sf label span{color:var(--accent);font-weight:700}
+.sw{display:flex;align-items:center;gap:5px}
+input[type=range]{-webkit-appearance:none;flex:1;height:3px;background:var(--ibg);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;background:var(--accent);border-radius:50%;cursor:pointer}
+.ni{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);width:38px;text-align:center;font-size:10px;padding:3px;outline:none;transition:background .2s,color .2s}
+.ni:focus{border-color:var(--accent)}
+
+/* ── STEPPER CONTROL ── */
+.stp{display:flex;align-items:center;background:var(--ibg);border:1px solid var(--border2);border-radius:30px;overflow:hidden;height:26px;flex-shrink:0}
+.stp-btn{background:none;border:none;color:var(--muted);cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:300;transition:all var(--tr);flex-shrink:0;user-select:none;line-height:1}
+.stp-btn:hover{color:var(--accent);background:var(--adim)}
+.stp-btn:active{transform:scale(.88)}
+.stp input[type=number]{background:none;border:none;color:var(--text);font-size:11px;font-weight:500;text-align:center;width:40px;outline:none;padding:0;font-family:inherit;-moz-appearance:textfield;transition:color .15s}
+.stp input[type=number]::-webkit-outer-spin-button,.stp input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.stp input[type=number]:focus{color:var(--accent)}
+.sf-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sf-row .fl{margin-bottom:0;flex:1}
+.tr-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tr-row>label:first-child,.tr-row>span:first-child{font-size:7.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.tog{position:relative;width:28px;height:16px;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0}
+.ts2{position:absolute;inset:0;background:var(--ibg);border-radius:20px;cursor:pointer;transition:background var(--tr)}
+.ts2::before{content:'';position:absolute;left:2px;top:1.5px;width:13px;height:13px;background:#888;border-radius:50%;transition:transform var(--tr),background var(--tr)}
+.tog input:checked+.ts2{background:var(--accent)}
+.tog input:checked+.ts2::before{transform:translateX(12px);background:#fff}
+
+select.fsel,select.ssel{
+  background:var(--sel-bg);border:1px solid var(--sel-bd);border-radius:var(--r);
+  color:var(--sel-fg);padding:4px 22px 4px 7px;font-size:11px;outline:none;width:100%;cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 7px center;
+  transition:background .2s,color .2s,border-color .2s;
+}
+select.fsel:focus,select.ssel:focus{border-color:var(--accent)}
+select.fsel option,select.ssel option{background:var(--sel-bg);color:var(--sel-fg)}
+
+.upbtn{background:var(--ibg);border:1.5px dashed var(--border2);border-radius:var(--r);padding:10px;cursor:pointer;font-size:11px;color:var(--muted);transition:all var(--tr);position:relative;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.upbtn:hover{border-color:var(--accent);color:var(--accent)}
+.upbtn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.divr{height:1px;background:var(--border)}
+.slbl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding-bottom:3px;border-bottom:1px solid var(--border);margin-bottom:1px}
+
+/* ── COMPACT DUAL 3×3 GRID ── */
+.dual-pos{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dpos-wrap{display:flex;flex-direction:column;gap:3px}
+.dpos-label{font-size:6px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:4px}
+.pg9{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:3px}
+.pg9-c{background:rgba(128,128,128,.06);border:1px solid transparent;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:5px 0;transition:all var(--tr);color:var(--muted)}
+.pg9-c i{font-size:8px}
+.pg9-c:hover{background:var(--ihov);border-color:var(--border2);color:var(--text)}
+.pg9-c.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+
+/* ALIGN ROW */
+.alr{display:flex;gap:3px}
+.ab{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:all var(--tr);font-size:11px}
+.ab:hover{background:var(--ihov);color:var(--text)}
+.ab.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+
+/* ── METİN ALT SEKME ── */
+.mtabs{display:flex;gap:0;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;flex-shrink:0}
+.mtab{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:6px 4px;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);display:flex;align-items:center;justify-content:center;gap:3px}
+.mtab i{font-size:9px}
+.mtab:hover{color:var(--text);background:var(--ihov)}
+.mtab.on{background:var(--adim);color:var(--accent)}
+.mtab-panel{display:none;flex-direction:column;gap:8px}
+.mtab-panel.on{display:flex}
+
+/* ── SUB TEXT (ust/alt) ── */
+.sub-blk{display:flex;flex-direction:column;gap:2px}
+.sub-blk-label{font-size:6.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:4px}
+.sub-inp{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);padding:4px 7px;font-size:12px;outline:none;font-family:inherit;transition:border-color var(--tr),background .2s,color .2s;width:100%}
+.sub-inp:focus{border-color:var(--accent)}
+
+/* ── UST / ALT TEXT on banner ── */
+#ust-text{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:3px;font-weight:400;color:rgba(255,255,255,.85);line-height:1.2;text-shadow:2px 2px 10px rgba(0,0,0,.9);display:block;outline:none;min-width:10px;white-space:pre-wrap;word-break:break-word;text-transform:uppercase}
+#alt-text{font-family:'Oswald',sans-serif;font-size:24px;letter-spacing:2px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.3;text-shadow:2px 2px 8px rgba(0,0,0,.9);display:block;outline:none;min-width:10px;white-space:pre-wrap;word-break:break-word}
+
+/* instant photo flip */
+#photo-fade{position:absolute;top:0;bottom:0;right:0;width:62%;z-index:2;pointer-events:none;transition:left .0s,right .0s}
+.fmt-bar{display:flex;align-items:center;gap:3px;flex-wrap:wrap;padding:4px 0 2px}
+.fmt-b{background:var(--ibg);border:1px solid var(--border2);border-radius:3px;color:var(--muted);cursor:pointer;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.fmt-b:hover{background:var(--ihov);color:var(--text)}
+.fmt-b.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+.fmt-clr{position:relative;width:26px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--ibg);border:1px solid var(--border2);border-radius:3px;transition:all var(--tr)}
+.fmt-clr:hover{background:var(--ihov);border-color:var(--border2)}
+.fmt-clr input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.fmt-clr i{font-size:10px;color:var(--accent);pointer-events:none}
+.fmt-sep{width:1px;height:14px;background:var(--border2);margin:0 1px;flex-shrink:0}
+.fmt-lbl{font-size:6.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;align-self:center;padding:0 2px}
+
+/* TAGS */
+.ptg{display:flex;flex-wrap:wrap;gap:4px}
+.ptb{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1.5px solid rgba(255,255,255,.18);transition:all var(--tr);color:#fff;user-select:none}
+.ptb:hover{filter:brightness(1.15)}
+.ctf{display:flex;flex-direction:column;gap:5px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:8px}
+.ctf label{font-size:7.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.ctf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);padding:5px 8px;font-size:12px;outline:none;width:100%}
+.ctf input:focus{border-color:var(--accent)}
+.ctr2{display:flex;gap:5px;align-items:center}
+.ctr2 input[type=color]{width:22px;height:22px;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;background:none;padding:2px;flex-shrink:0}
+.addtag{flex:1;background:var(--accent);border:none;color:#000;font-weight:700;font-size:10px;letter-spacing:1px;border-radius:var(--rs);padding:6px;cursor:pointer;font-family:inherit;transition:filter var(--tr)}
+.addtag:hover{filter:brightness(1.1)}
+.tgl{display:flex;flex-wrap:wrap;gap:4px}
+.tpill{background:var(--adim);border:1px solid var(--accent);color:var(--accent);padding:2px 7px;border-radius:20px;font-size:9.5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.tpill:hover{background:rgba(240,165,0,.22)}
+.tpill .rm{color:var(--red);font-weight:900;font-size:12px;line-height:1}
+
+/* QUICK FILTERS */
+.qrow{display:flex;gap:3px;flex-wrap:wrap}
+.qb{flex:1;min-width:48px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:5px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:6.5px;letter-spacing:.4px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
+.qb i{font-size:11px}
+.qb:hover{background:var(--ihov);color:var(--text)}
+.qb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+
+/* DOWNLOAD */
+.bndl{background:linear-gradient(135deg,var(--accent),#d08800);border:none;color:#1a0800;font-weight:800;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:var(--r);padding:11px;cursor:pointer;transition:all var(--tr);box-shadow:0 4px 20px rgba(240,165,0,.2);font-family:inherit}
+.bndl:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(240,165,0,.4)}
+
+/* SETTINGS */
+.stsec{display:flex;flex-direction:column;gap:7px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:9px}
+.stsec h4{font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.thr{display:flex;gap:4px}
+.thb{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:7px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:7px;letter-spacing:.5px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
+.thb i{font-size:13px}
+.thb:hover{background:var(--ihov);color:var(--text)}
+.thb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+
+/* FLIP CONTROLS */
+.flip-row{display:flex;gap:5px}
+.flip-btn{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:7px 5px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:8.5px;transition:all var(--tr);font-family:inherit;letter-spacing:.5px;text-transform:uppercase}
+.flip-btn:hover{background:var(--ihov);color:var(--text)}
+.flip-btn.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+.flip-btn i{font-size:11px}
+
+/* TOAST / LOADING */
+#loading{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#fff;font-size:11px;letter-spacing:3px}
+#loading.on{display:flex}
+.spin{width:32px;height:32px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#toast{position:fixed;bottom:calc(var(--nav-h)+10px);left:50%;transform:translateX(-50%) translateY(12px);background:var(--green);color:#fff;padding:6px 14px;border-radius:28px;font-size:10px;font-weight:700;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .22s ease;z-index:800;display:flex;align-items:center;gap:5px}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div id="shell">
+
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <div class="tb-logo">HABER<em>EDİTÖR</em> <em style="font-size:7px">v12</em></div>
+    <div class="spacer"></div>
+    <button class="tib" id="btn-tpo" title="Etiket Konumu" onclick="toggleTagOverlay()"><i class="fa-solid fa-location-dot"></i></button>
+    <button class="tib" title="Ayarlar" onclick="openTab('ayarlar',null)"><i class="fa-solid fa-gear"></i></button>
+    <button class="btn-dl" onclick="doDownload()"><i class="fa-solid fa-download"></i> İNDİR</button>
+  </div>
+
+  <div id="main">
+    <!-- CANVAS WRAP -->
+    <div id="canvas-wrap">
+      <div id="canvas-area">
+        <div id="bsw">
+          <div id="banner">
+            <div id="banner-body">
+              <div id="color-panel"></div>
+              <canvas id="photo-canvas"></canvas>
+              <div id="photo-fade"></div>
+              <!-- TAG POS OVERLAY -->
+              <div id="tpo"><div id="tpg"></div></div>
+              <!-- TAGS — transparent, no band -->
+              <div id="tag-bar" class="hidden"></div>
+              <!-- TEXT -->
+              <div id="text-overlay">
+                <div class="text-block" id="blk-ust" style="display:none">
+                  <div class="text-bg" id="bg-ust"></div>
+                  <span id="ust-text" contenteditable="true" spellcheck="false"></span>
+                </div>
+                <div class="text-block" id="blk-main">
+                  <div class="text-bg" id="bg-main"></div>
+                  <span id="main-text" contenteditable="true" spellcheck="false"></span>
+                </div>
+                <div class="text-block" id="blk-alt" style="display:none">
+                  <div class="text-bg" id="bg-alt"></div>
+                  <span id="alt-text" contenteditable="true" spellcheck="false"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PHOTO MINI BAR -->
+      <div id="pmb">
+        <span class="pmb-lbl">Görsel</span>
+        <div class="pmb-s"></div>
+        <button class="pmb-b" onclick="zPhoto(-.08)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <input class="pmb-r" id="z-slider" type="range" min=".1" max="5" step=".05" value="1" oninput="setZ(this.value)">
+        <button class="pmb-b" onclick="zPhoto(.08)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <div class="pmb-s"></div>
+        <button class="pmb-b" onclick="rPhoto(-5)"><i class="fa-solid fa-rotate-left"></i></button>
+        <button class="pmb-b" onclick="rPhoto(5)"><i class="fa-solid fa-rotate-right"></i></button>
+        <div class="pmb-s"></div>
+        <button class="pmb-b" onclick="resetPhoto()"><i class="fa-solid fa-arrows-rotate"></i></button>
+      </div>
+    </div>
+
+    <!-- PANEL ZONE -->
+    <div id="pz">
+      <div id="sph">
+        <i class="fa-solid fa-sliders" style="color:var(--accent);font-size:9px"></i>
+        <span id="spt">PANEL</span>
+        <button id="spc-btn" onclick="closePanel()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="spc"></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div id="bnav">
+    <button class="nb" data-t="metin" onclick="openTab('metin',this)"><i class="fa-solid fa-pen-nib"></i>Metin</button>
+    <button class="nb" data-t="konum" onclick="openTab('konum',this)"><i class="fa-solid fa-arrows-up-down-left-right"></i>Konum</button>
+    <button class="nb" data-t="etiket" onclick="openTab('etiket',this)"><i class="fa-solid fa-tag"></i>Etiket</button>
+    <button class="nb" data-t="gorsel" onclick="openTab('gorsel',this)"><i class="fa-solid fa-image"></i>Görsel</button>
+    <button class="nb" data-t="indir" onclick="openTab('indir',this)"><i class="fa-solid fa-download"></i>İndir</button>
+  </div>
+</div>
+
+<!-- FLOATING TOOLBAR (selection) -->
+<div id="ftb">
+  <button class="fb" id="fb-b" onclick="fmt('bold')"><i class="fa-solid fa-bold"></i></button>
+  <button class="fb" id="fb-i" onclick="fmt('italic')"><i class="fa-solid fa-italic"></i></button>
+  <button class="fb" id="fb-u" onclick="fmt('underline')"><i class="fa-solid fa-underline"></i></button>
+  <div class="fbs"></div>
+  <div class="fc" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#ffffff" oninput="rsel();document.execCommand('foreColor',false,this.value)"></div>
+  <div class="fc" title="Vurgu"><i class="fa-solid fa-highlighter"></i><input type="color" value="#f0a500" oninput="rsel();document.execCommand('hiliteColor',false,this.value)"></div>
+  <button class="fb" onclick="rsel();document.execCommand('removeFormat',false,null)" title="Sil"><i class="fa-solid fa-eraser"></i></button>
+</div>
+
+<div id="loading"><div class="spin"></div><span>HAZIRLANIYOR...</span></div>
+<div id="toast"><i class="fa-solid fa-check-circle"></i><span id="tmsg"></span></div>
+
+<script>
+/* ═══ CONSTANTS ═══ */
+const BW=1920,BH=540,MIN_CV=50;
+
+const FONTS=[
+  'Abril Fatface','Alegreya','Anton','Archivo Black','Arvo','Asap',
+  'Barlow Condensed','Bebas Neue','Bitter','Cabin','Cinzel',
+  'Cormorant Garamond','Crimson Text','Dancing Script','DM Sans',
+  'EB Garamond','Exo 2','Fira Sans','Fjalla One','Fraunces',
+  'IBM Plex Sans','IBM Plex Serif','Inter','Josefin Sans','Kanit','Karla',
+  'Lato','Libre Baskerville','Libre Franklin','Lora','Manrope','Merriweather',
+  'Montserrat','Mulish','Nunito','Open Sans','Oswald','Outfit','Playfair Display',
+  'Poppins','PT Sans','PT Serif','Quicksand','Raleway','Roboto',
+  'Roboto Condensed','Roboto Slab','Rubik','Source Sans 3','Source Serif 4',
+  'Space Grotesk','Teko','Ubuntu','Vollkorn','Work Sans'
+].sort();
+
+const TAG_PRESETS=[
+  {label:"Son Dakika",icon:"fa-solid fa-bolt",bg:"#cc0000",fg:"#fff"},
+  {label:"Canlı",icon:"fa-solid fa-circle",bg:"#dd0000",fg:"#fff"},
+  {label:"Özel Haber",icon:"fa-solid fa-star",bg:"#c47b00",fg:"#fff"},
+  {label:"Gelişme",icon:"fa-solid fa-arrow-up",bg:"#1a7acc",fg:"#fff"},
+  {label:"Analiz",icon:"fa-solid fa-chart-bar",bg:"#5a4fcf",fg:"#fff"},
+  {label:"Röportaj",icon:"fa-solid fa-microphone",bg:"#2d8f5e",fg:"#fff"},
+  {label:"Flaş",icon:"fa-solid fa-fire",bg:"#e8612a",fg:"#fff"},
+  {label:"Gündem",icon:"fa-solid fa-list",bg:"#555",fg:"#fff"},
+  {label:"Ekonomi",icon:"fa-solid fa-coins",bg:"#2a7a2a",fg:"#fff"},
+  {label:"Spor",icon:"fa-solid fa-futbol",bg:"#007acc",fg:"#fff"},
+  {label:"Sağlık",icon:"fa-solid fa-heart-pulse",bg:"#bb2255",fg:"#fff"},
+  {label:"Teknoloji",icon:"fa-solid fa-microchip",bg:"#2277bb",fg:"#fff"},
+];
+
+const POS9K=['top-left','top-center','top-right','mid-left','mid-center','mid-right','bot-left','bot-center','bot-right'];
+const POS9I=['fa-arrow-up-left','fa-arrow-up','fa-arrow-up-right','fa-arrow-left','fa-circle-dot','fa-arrow-right','fa-arrow-down-left','fa-arrow-down','fa-arrow-down-right'];
+
+// Position CSS (text-overlay & tag-bar share same keys)
+function posCss(key){
+  const m={
+    'top-left':    {top:'0',left:'0',bottom:'auto',right:'auto',transform:'',ji:'flex-start',ai:'flex-start'},
+    'top-center':  {top:'0',left:'50%',bottom:'auto',right:'auto',transform:'translateX(-50%)',ji:'flex-start',ai:'center'},
+    'top-right':   {top:'0',right:'0',bottom:'auto',left:'auto',transform:'',ji:'flex-start',ai:'flex-end'},
+    'mid-left':    {top:'50%',left:'0',bottom:'auto',right:'auto',transform:'translateY(-50%)',ji:'center',ai:'flex-start'},
+    'mid-center':  {top:'50%',left:'50%',bottom:'auto',right:'auto',transform:'translate(-50%,-50%)',ji:'center',ai:'center'},
+    'mid-right':   {top:'50%',right:'0',bottom:'auto',left:'auto',transform:'translateY(-50%)',ji:'center',ai:'flex-end'},
+    'bot-left':    {bottom:'0',left:'0',top:'auto',right:'auto',transform:'',ji:'flex-end',ai:'flex-start'},
+    'bot-center':  {bottom:'0',left:'50%',top:'auto',right:'auto',transform:'translateX(-50%)',ji:'flex-end',ai:'center'},
+    'bot-right':   {bottom:'0',right:'0',top:'auto',left:'auto',transform:'',ji:'flex-end',ai:'flex-end'},
+  };
+  return m[key];
+}
+
+/* ═══ STATE ═══ */
+let tags=[],panelColor='#1a1a2e',imgWidth=60,fadeStart=30,imgSide='right';
+let textPos='bot-left',tagPos='top-left';
+let fBlur=0,fDark=0,fSat=100;
+let activeTab=null,panelOpen=false;
+let uImg=null,pX=0,pY=0,pSc=1,pRot=0;
+let drag=false,dSX=0,dSY=0,dOX=0,dOY=0;
+let pinch=false,pd0=1,ps0=1;
+let tagOverlay=false;
+let curTheme='system';
+let layoutFlipped=false; // photo left, text right
+let textInset=10; // % inset from each side
+
+/* ═══ THEME ═══ */
+const mq=window.matchMedia('(prefers-color-scheme:light)');
+function applyTheme(t){
+  curTheme=t;
+  document.documentElement.dataset.theme=(t==='system')?(mq.matches?'light':'dark'):t;
+  localStorage.setItem('hbe-t',t);
+}
+mq.addEventListener('change',()=>{if(curTheme==='system')applyTheme('system');});
+applyTheme(localStorage.getItem('hbe-t')||'system');
+
+/* ═══ PUSH PANEL ═══ */
+function openTab(name,btn){
+  if(activeTab===name&&panelOpen){closePanel();return;}
+  activeTab=name;
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  document.getElementById('spc').innerHTML=buildHTML(name);
+  document.getElementById('spt').textContent={metin:'METİN',konum:'KONUM',etiket:'ETİKETLER',gorsel:'GÖRSEL',indir:'İNDİR',ayarlar:'AYARLAR'}[name]||name.toUpperCase();
+  if(name==='etiket')buildPresets();
+  panelOpen=true;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const sp=document.getElementById('spc');
+    const h=Math.min(sp.scrollHeight+32,document.getElementById('main').clientHeight-MIN_CV);
+    document.getElementById('pz').style.flexBasis=h+'px';
+    scaleBanner();
+  }));
+}
+function closePanel(){
+  document.getElementById('pz').style.flexBasis='0px';
+  panelOpen=false;activeTab=null;
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  scaleBanner();
+}
+
+/* ═══ SCALE ═══ */
+function scaleBanner(){
+  const a=document.getElementById('canvas-area'),w=document.getElementById('bsw');
+  const aw=a.clientWidth-4,ah=a.clientHeight-4;
+  if(aw<=0||ah<=0)return;
+  const s=Math.min(aw/BW,ah/BH,1);
+  w.style.width=BW+'px';w.style.height=BH+'px';w.style.transform=`scale(${s})`;
+}
+window.addEventListener('resize',scaleBanner);
+
+/* ═══ LAYOUT FLIP ═══ */
+function setLayout(side){
+  imgSide=side;
+  layoutFlipped=(side==='left');
+  // Mirror photo X position instantly
+  if(uImg){
+    const tw=BW*(imgWidth/100);
+    pX = side==='right' ? BW-(tw/2) : tw/2;
+  }
+  // Instantly update fade + redraw photo
+  rebuildFade();
+  drawPhoto();
+  applyTextInset();
+  document.querySelectorAll('.flip-btn').forEach(b=>b.classList.toggle('on',b.dataset.side===side));
+}
+function applyTextInset(){
+  const ov=document.getElementById('text-overlay');
+  const insetPx=Math.round(BW*(textInset/100));
+  // When flipped: text is on right, so right inset + text leans right
+  if(layoutFlipped){
+    ov.style.left=insetPx+'px';
+    ov.style.right=insetPx+'px';
+  } else {
+    ov.style.left=insetPx+'px';
+    ov.style.right=insetPx+'px';
+  }
+}
+function setInset(v){
+  textInset=parseInt(v);
+  updateVal('v-inset',v);
+  applyTextInset();
+}
+
+/* ═══ FADE ═══ */
+function h2r(h){return`${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)}`;}
+function setPanelColor(h){panelColor=h;document.getElementById('color-panel').style.background=h;rebuildFade();}
+function setImgWidth(v){imgWidth=parseInt(v);updateVal('v-iw',v);rebuildFade();drawPhoto();}
+function setFadeStart(v){fadeStart=parseInt(v);updateVal('v-fd',v);rebuildFade();}
+function rebuildFade(){
+  const f=document.getElementById('photo-fade');
+  const rgb=h2r(panelColor);
+  const s0=fadeStart,s1=Math.min(s0+25,88),s2=Math.min(s0+50,100);
+  const dir=imgSide==='right'?'left':'right';
+  f.style.width=imgWidth+'%';
+  if(imgSide==='right'){f.style.right='0';f.style.left='auto';}else{f.style.left='0';f.style.right='auto';}
+  f.style.background=`linear-gradient(to ${dir},transparent 0%,transparent ${s0}%,rgba(${rgb},.5) ${s1}%,rgba(${rgb},1) ${s2}%,rgba(${rgb},1) 100%)`;
+}
+
+/* ═══ FILTERS ═══ */
+function setF(t,v){
+  if(t==='blur'){fBlur=parseFloat(v);updateVal('v-blur',v);}
+  else if(t==='dark'){fDark=parseInt(v);updateVal('v-dark',v);}
+  else if(t==='sat'){fSat=parseInt(v);updateVal('v-sat',v);}
+  drawPhoto();
+}
+function quickF(t){
+  const p={normal:[0,0,100],bw:[0,0,0],dark:[0,55,80],vivid:[0,0,180]}[t]||[0,0,100];
+  [fBlur,fDark,fSat]=p;
+  ['v-blur','v-dark','v-sat'].forEach((id,i)=>updateVal(id,p[i]));
+  drawPhoto();
+}
+
+/* ═══ PHOTO CANVAS ═══ */
+function loadImg(inp){
+  if(!inp.files||!inp.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{const img=new Image();img.onload=()=>{uImg=img;autoFit();drawPhoto();document.getElementById('pmb').classList.add('on');document.getElementById('z-slider').value=pSc;toast('Görsel yüklendi!');};img.src=e.target.result;};
+  r.readAsDataURL(inp.files[0]);
+}
+function autoFit(){
+  if(!uImg)return;
+  const tw=BW*(imgWidth/100);
+  pSc=Math.max(tw/uImg.naturalWidth,BH/uImg.naturalHeight);
+  pX=imgSide==='right'?BW-(tw/2):tw/2;pY=BH/2;
+}
+function drawPhoto(){
+  const cv=document.getElementById('photo-canvas');cv.width=BW;cv.height=BH;
+  const ctx=cv.getContext('2d');ctx.clearRect(0,0,BW,BH);
+  if(!uImg)return;
+  const oc=document.createElement('canvas');oc.width=BW;oc.height=BH;
+  const oc2=oc.getContext('2d');
+  oc2.save();oc2.translate(pX,pY);oc2.rotate(pRot*Math.PI/180);
+  const w=uImg.naturalWidth*pSc,h=uImg.naturalHeight*pSc;
+  oc2.drawImage(uImg,-w/2,-h/2,w,h);oc2.restore();
+  const fs=[fBlur>0?`blur(${fBlur}px)`:'',fSat!==100?`saturate(${fSat}%)`:''].filter(Boolean).join(' ')||'none';
+  ctx.filter=fs;ctx.drawImage(oc,0,0);ctx.filter='none';
+  if(fDark>0){ctx.fillStyle=`rgba(0,0,0,${fDark/100})`;ctx.fillRect(0,0,BW,BH);}
+}
+function zPhoto(d){pSc=Math.max(.05,Math.min(10,pSc+d));document.getElementById('z-slider').value=pSc;drawPhoto();}
+function setZ(v){pSc=parseFloat(v);drawPhoto();}
+function rPhoto(d){pRot+=d;drawPhoto();}
+function resetPhoto(){if(uImg)autoFit();else{pX=BW/2;pY=BH/2;pSc=1;pRot=0;}document.getElementById('z-slider').value=pSc;drawPhoto();}
+function getScl(){const t=(document.getElementById('bsw').style.transform||'scale(1)').match(/scale\(([^)]+)\)/);return t?parseFloat(t[1]):1;}
+
+document.addEventListener('mousedown',e=>{if(e.target===document.getElementById('photo-canvas')&&uImg){drag=true;dSX=e.clientX;dSY=e.clientY;dOX=pX;dOY=pY;e.preventDefault();}});
+document.addEventListener('mousemove',e=>{if(!drag||!uImg)return;const s=getScl();pX=dOX+(e.clientX-dSX)/s;pY=dOY+(e.clientY-dSY)/s;drawPhoto();});
+document.addEventListener('mouseup',()=>{drag=false;});
+document.getElementById('photo-canvas').addEventListener('wheel',e=>{if(!uImg)return;e.preventDefault();zPhoto(e.deltaY>0?-.06:.06);},{passive:false});
+document.getElementById('photo-canvas').addEventListener('touchstart',e=>{if(!uImg)return;if(e.touches.length===1){drag=true;dSX=e.touches[0].clientX;dSY=e.touches[0].clientY;dOX=pX;dOY=pY;}else if(e.touches.length===2){drag=false;pinch=true;pd0=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);ps0=pSc;}e.preventDefault();},{passive:false});
+document.getElementById('photo-canvas').addEventListener('touchmove',e=>{if(!uImg)return;if(drag&&e.touches.length===1){const s=getScl();pX=dOX+(e.touches[0].clientX-dSX)/s;pY=dOY+(e.touches[0].clientY-dSY)/s;drawPhoto();}else if(pinch&&e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);pSc=Math.max(.05,Math.min(10,ps0*(d/pd0)));document.getElementById('z-slider').value=pSc;drawPhoto();}e.preventDefault();},{passive:false});
+document.getElementById('photo-canvas').addEventListener('touchend',e=>{if(e.touches.length<2)pinch=false;if(e.touches.length===0)drag=false;},{passive:true});
+
+/* ═══ TEXT POSITION ═══ */
+function setTextPos(key){
+  textPos=key;
+  const ov=document.getElementById('text-overlay'),c=posCss(key);
+  const insetPx=Math.round(BW*(textInset/100));
+  ov.style.cssText=`position:absolute;z-index:3;display:flex;flex-direction:column;padding:24px 0;pointer-events:none;`;
+  ov.style.top=c.top||'';ov.style.left=c.left||(insetPx+'px');ov.style.bottom=c.bottom||'';ov.style.right=c.right||(insetPx+'px');
+  ov.style.transform=c.transform||'';
+  ov.style.justifyContent=c.ji;ov.style.alignItems=c.ai;
+  // Reapply inset for left/right
+  if(!c.left)ov.style.left=insetPx+'px';
+  if(!c.right)ov.style.right=insetPx+'px';
+  document.querySelectorAll('.pg9-c[data-k]').forEach(b=>b.classList.toggle('on',b.dataset.k===key));
+}
+
+/* ═══ TAG POSITION OVERLAY ═══ */
+function buildTagOverlay(){
+  const g=document.getElementById('tpg');g.innerHTML='';
+  POS9K.forEach((k,i)=>{
+    const c=document.createElement('div');
+    c.className='tpc'+(k===tagPos?' sel':'');c.dataset.k=k;
+    c.innerHTML=`<i class="fa-solid ${POS9I[i]}"></i>`;
+    c.onclick=()=>setTagPos(k);
+    g.appendChild(c);
+  });
+}
+function toggleTagOverlay(){
+  tagOverlay=!tagOverlay;
+  document.getElementById('tpo').classList.toggle('on',tagOverlay);
+  document.getElementById('btn-tpo').classList.toggle('on',tagOverlay);
+  if(tagOverlay)buildTagOverlay();
+}
+function setTagPos(key){
+  tagPos=key;
+  const tb=document.getElementById('tag-bar');
+  const c=posCss(key);
+  Object.assign(tb.style,{position:'absolute',display:tb.classList.contains('hidden')?'none':'flex',flexWrap:'wrap',maxWidth:'80%',top:'',left:'',bottom:'',right:'',transform:'',justifyContent:'',alignItems:'',padding:'8px 20px'});
+  ['top','left','bottom','right','transform'].forEach(p=>{if(c[p]!==undefined)tb.style[p]=c[p];});
+  tb.style.justifyContent=c.ji;tb.style.alignItems=c.ai;
+  document.querySelectorAll('.tpc').forEach(el=>el.classList.toggle('sel',el.dataset.k===key));
+  document.querySelectorAll('.pg9-c[data-tk]').forEach(el=>el.classList.toggle('on',el.dataset.tk===key));
+  tagOverlay=false;
+  document.getElementById('tpo').classList.remove('on');
+  document.getElementById('btn-tpo').classList.remove('on');
+  toast('Etiket: '+key.replace('-',' '));
+}
+
+/* ═══ FLOATING TOOLBAR ═══ */
+let svRng=null;
+document.addEventListener('selectionchange',()=>{
+  const sel=window.getSelection();
+  if(!sel||sel.isCollapsed||!sel.rangeCount){hideFT();return;}
+  if(!document.getElementById('banner').contains(sel.anchorNode)){hideFT();return;}
+  svRng=sel.getRangeAt(0).cloneRange();
+  const rect=sel.getRangeAt(0).getBoundingClientRect();
+  const tb=document.getElementById('ftb');tb.classList.add('on');
+  const tw=tb.offsetWidth||170;
+  let x=rect.left+rect.width/2-tw/2;
+  let y=rect.top-40;
+  x=Math.max(4,Math.min(x,window.innerWidth-tw-4));
+  if(y<4)y=rect.bottom+7;
+  tb.style.left=x+'px';tb.style.top=y+'px';
+});
+function hideFT(){document.getElementById('ftb').classList.remove('on');}
+function rsel(){if(!svRng)return;const s=window.getSelection();s.removeAllRanges();s.addRange(svRng);}
+function fmt(cmd){rsel();document.execCommand(cmd,false,null);const m={bold:'fb-b',italic:'fb-i',underline:'fb-u'};const b=document.getElementById(m[cmd]);if(b)b.classList.toggle('on',document.queryCommandState(cmd));}
+document.addEventListener('mousedown',e=>{const ft=document.getElementById('ftb');if(!ft.contains(e.target)&&!document.getElementById('banner').contains(e.target))hideFT();});
+
+/* ═══ TAGS ═══ */
+function buildPresets(){
+  const g=document.getElementById('preset-grid');if(!g)return;g.innerHTML='';
+  TAG_PRESETS.forEach(t=>{const b=document.createElement('button');b.className='ptb';b.style.background=t.bg;b.style.color=t.fg;b.innerHTML=`<i class="${t.icon}"></i> ${t.label}`;b.onclick=()=>addTag(t);g.appendChild(b);});
+}
+function addTag(o){tags.push(o);renderTags();const tog=document.getElementById('tog-tags');if(tog)tog.checked=true;showTagBar(true);}
+function addCustomTag(){
+  const t=document.getElementById('inp-tag').value.trim();if(!t)return;
+  const ic=document.getElementById('inp-icon').value.trim();
+  addTag({label:t,icon:ic?'fa-solid '+ic:'',bg:document.getElementById('ctbg').value,fg:document.getElementById('ctfg').value});
+  document.getElementById('inp-tag').value='';document.getElementById('inp-icon').value='';
+}
+function renderTags(){
+  const l=document.getElementById('tag-list');if(!l)return;
+  l.innerHTML=tags.length?tags.map((t,i)=>`<div class="tpill" onclick="removeTag(${i})">${t.icon?`<i class="${t.icon}" style="font-size:9px"></i>`:''} ${t.label} <span class="rm">×</span></div>`).join(''):'<span style="color:var(--muted);font-size:11px">Henüz etiket yok</span>';
+  const bar=document.getElementById('tag-bar');
+  bar.innerHTML=tags.map(t=>`<span class="tag-item" style="background:${t.bg};color:${t.fg}">${t.icon?`<i class="${t.icon}"></i><span class="ts"> | </span>`:''} ${esc(t.label)}</span>`).join('');
+}
+function removeTag(i){tags.splice(i,1);renderTags();}
+function showTagBar(v){
+  const tb=document.getElementById('tag-bar');
+  tb.classList.toggle('hidden',!v);
+  if(v){setTagPos(tagPos);}else{tb.style.display='none';}
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ═══ STEPPER ═══ */
+function step(btn,d){
+  const inp=btn.parentElement.querySelector('input[type=number]');
+  if(!inp)return;
+  const mn=parseFloat(inp.min??-Infinity),mx=parseFloat(inp.max??Infinity);
+  const st=parseFloat(inp.dataset.step||inp.step||1);
+  const nv=Math.min(mx,Math.max(mn,parseFloat(inp.value||0)+d*st));
+  inp.value=nv;
+  inp.dispatchEvent(new Event('input',{bubbles:true}));
+}
+
+/* ═══ HELPERS ═══ */
+function syncNum(r){const w=r.closest('.sw');if(!w)return;const n=w.querySelector('input[type=number]');if(n)n.value=r.value;}
+function syncRange(n){const w=n.closest('.sw');if(!w)return;const r=w.querySelector('input[type=range]');if(r)r.value=n.value;}
+function updateVal(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+function updateHex(id,v){const el=document.getElementById(id);if(el)el.textContent=v.toUpperCase();}
+function setShadow(c){document.getElementById('main-text').style.textShadow=`2px 2px 8px ${c}cc,0 0 20px ${c}55`;}
+function setBgMain(color,op){setBg('main',color,op);}
+function setBg(which,color,op){
+  const ids={ust:'bg-ust',main:'bg-main',alt:'bg-alt'};
+  const el=document.getElementById(ids[which]);if(!el)return;
+  const o=parseInt(op)/100;
+  const r=parseInt(color.slice(1,3),16),g=parseInt(color.slice(3,5),16),b=parseInt(color.slice(5,7),16);
+  el.style.background=`rgba(${r},${g},${b},${o})`;
+}
+function setSubText(which,val){
+  const spanId=which==='ust'?'ust-text':'alt-text';
+  const blkId=which==='ust'?'blk-ust':'blk-alt';
+  const span=document.getElementById(spanId);
+  const blk=document.getElementById(blkId);
+  if(!span||!blk)return;
+  span.textContent=val;
+  blk.style.display=val.trim()?'block':'none';
+}
+function switchMetinTab(which,btn){
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.mtab-panel').forEach(p=>p.classList.remove('on'));
+  const tp=document.getElementById('mtp-'+which);
+  if(tp)tp.classList.add('on');
+}
+function applySubStyle(which,prop,val){
+  const id=which==='ust'?'ust-text':'alt-text';
+  const el=document.getElementById(id);
+  if(el)el.style[prop]=val;
+}
+/* Format a specific contenteditable by id */
+function fmtEl(id,cmd){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.focus();
+  document.execCommand(cmd,false,null);
+}
+
+/* ═══ FONT OPTIONS ═══ */
+function fontOpts(sel){return FONTS.map(f=>`<option value="'${f}',sans-serif"${f===sel?' selected':''}>${f}</option>`).join('');}
+
+/* ═══ BUILD TAB HTML ═══ */
+function buildHTML(name){
+
+  if(name==='metin'){
+  const ustVal=document.getElementById('ust-text')?document.getElementById('ust-text').textContent:'';
+  const anaVal=document.getElementById('main-text')?document.getElementById('main-text').textContent:'';
+  const altVal=document.getElementById('alt-text')?document.getElementById('alt-text').textContent:'';
+  return `
+    <div class="mtabs">
+      <button class="mtab" onclick="switchMetinTab('ust',this)">↑ Üst</button>
+      <button class="mtab on" onclick="switchMetinTab('ana',this)">● Ana</button>
+      <button class="mtab" onclick="switchMetinTab('alt',this)">↓ Alt</button>
+    </div>
+
+    <!-- ÜST METİN PANELİ -->
+    <div class="mtab-panel" id="mtp-ust">
+      <div class="rf"><textarea id="inp-ust" placeholder="Üst metninizi buraya girebilirsiniz" oninput="setSubText('ust',this.value)">${ustVal}</textarea></div>
+      <div class="fmt-bar">
+        <span class="fmt-lbl">Biçim:</span>
+        <button class="fmt-b" onclick="fmtEl('ust-text','bold')"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','italic')"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','underline')"><i class="fa-solid fa-underline"></i></button>
+        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#e0e0e0" oninput="applySubStyle('ust','color',this.value)"></div>
+        <div class="fmt-sep"></div>
+        <span class="fmt-lbl">Hizala:</span>
+        <button class="ab on" data-a="left" onclick="applySubStyle('ust','textAlign','left');setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
+        <button class="ab" data-a="center" onclick="applySubStyle('ust','textAlign','center');setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
+        <button class="ab" data-a="right" onclick="applySubStyle('ust','textAlign','right');setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
+      </div>
+      <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-usz">28</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="8" max="200" value="28" oninput="applySubStyle('ust','fontSize',this.value+'px');updateVal('v-usz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-uls">3</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="3" oninput="applySubStyle('ust','letterSpacing',this.value+'px');updateVal('v-uls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="rf"><label>Font</label><select class="fsel" onchange="applySubStyle('ust','fontFamily',this.value)">${fontOpts('Oswald')}</select></div>
+      <div class="cr">
+        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="ubg" oninput="setBg('ust',this.value,document.getElementById('ubgo').value);updateHex('ubh',this.value)"><span id="ubh">#000</span></div></div>
+        <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="ubgo" min="0" max="100" value="0" oninput="setBg('ust',document.getElementById('ubg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
+      </div>
+    </div>
+
+    <!-- ANA METİN PANELİ -->
+    <div class="mtab-panel on" id="mtp-ana">
+      <div class="rf"><textarea id="inp-main" placeholder="Ana metninizi buraya girebilirsiniz" oninput="document.getElementById('main-text').innerHTML=sanitize(this.value);document.getElementById('blk-main').style.display=this.value.trim()?'block':'none'">${anaVal}</textarea></div>
+      <div class="fmt-bar">
+        <span class="fmt-lbl">Biçim:</span>
+        <button class="fmt-b" onclick="fmt('bold')"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmt('italic')"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmt('underline')"><i class="fa-solid fa-underline"></i></button>
+        <div class="fmt-clr" title="Metin Rengi"><i class="fa-solid fa-font"></i><input type="color" value="#ffffff" oninput="document.getElementById('main-text').style.color=this.value"></div>
+        <div class="fmt-clr" title="Gölge Rengi"><i class="fa-solid fa-droplet-slash"></i><input type="color" value="#000000" oninput="setShadow(this.value)"></div>
+        <div class="fmt-sep"></div>
+        <span class="fmt-lbl">Hizala:</span>
+        <button class="ab on" data-a="left" onclick="document.getElementById('main-text').style.textAlign='left';setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
+        <button class="ab" data-a="center" onclick="document.getElementById('main-text').style.textAlign='center';setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
+        <button class="ab" data-a="right" onclick="document.getElementById('main-text').style.textAlign='right';setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
+        <button class="ab" data-a="justify" onclick="document.getElementById('main-text').style.textAlign='justify';setAlignBtn(this,'justify')"><i class="fa-solid fa-align-justify"></i></button>
+      </div>
+      <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-sz">100</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="10" max="300" value="100" oninput="document.getElementById('main-text').style.fontSize=this.value+'px';updateVal('v-sz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="sf"><div class="sf-row"><label class="fl">Satır Y. <span id="v-lh">95</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="50" max="200" value="95" oninput="document.getElementById('main-text').style.lineHeight=(this.value/100);updateVal('v-lh',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-ls">2</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="2" oninput="document.getElementById('main-text').style.letterSpacing=this.value+'px';updateVal('v-ls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="rf"><label>Font (${FONTS.length} adet)</label><select class="fsel" onchange="document.getElementById('main-text').style.fontFamily=this.value">${fontOpts('Bebas Neue')}</select></div>
+      <div class="cr">
+        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="mbg" oninput="setBg('main',this.value,document.getElementById('mbgo').value);updateHex('mbh',this.value)"><span id="mbh">#000</span></div></div>
+        <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="mbgo" min="0" max="100" value="0" oninput="setBg('main',document.getElementById('mbg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
+      </div>
+    </div>
+
+    <!-- ALT METİN PANELİ -->
+    <div class="mtab-panel" id="mtp-alt">
+      <div class="rf"><textarea id="inp-alt" placeholder="Alt metninizi buraya girebilirsiniz" oninput="setSubText('alt',this.value)">${altVal}</textarea></div>
+      <div class="fmt-bar">
+        <span class="fmt-lbl">Biçim:</span>
+        <button class="fmt-b" onclick="fmtEl('alt-text','bold')"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmtEl('alt-text','italic')"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmtEl('alt-text','underline')"><i class="fa-solid fa-underline"></i></button>
+        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#b0b0b0" oninput="applySubStyle('alt','color',this.value)"></div>
+        <div class="fmt-sep"></div>
+        <span class="fmt-lbl">Hizala:</span>
+        <button class="ab on" data-a="left" onclick="applySubStyle('alt','textAlign','left');setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
+        <button class="ab" data-a="center" onclick="applySubStyle('alt','textAlign','center');setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
+        <button class="ab" data-a="right" onclick="applySubStyle('alt','textAlign','right');setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
+      </div>
+      <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-alsz">24</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="8" max="200" value="24" oninput="applySubStyle('alt','fontSize',this.value+'px');updateVal('v-alsz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-alls">2</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="2" oninput="applySubStyle('alt','letterSpacing',this.value+'px');updateVal('v-alls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+      <div class="rf"><label>Font</label><select class="fsel" onchange="applySubStyle('alt','fontFamily',this.value)">${fontOpts('Oswald')}</select></div>
+      <div class="cr">
+        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="abg" oninput="setBg('alt',this.value,document.getElementById('abgo').value);updateHex('abh',this.value)"><span id="abh">#000</span></div></div>
+        <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="abgo" min="0" max="100" value="0" oninput="setBg('alt',document.getElementById('abg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
+      </div>
+    </div>
+  `;}
+
+
+  if(name==='konum') return `
+    <div class="dual-pos">
+      <div class="dpos-wrap">
+        <div class="dpos-label"><i class="fa-solid fa-font" style="font-size:7px"></i>Metin</div>
+        <div class="pg9">
+          ${POS9K.map((k,i)=>`<button class="pg9-c${k===textPos?' on':''}" data-k="${k}" onclick="setTextPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}
+        </div>
+      </div>
+      <div class="dpos-wrap">
+        <div class="dpos-label"><i class="fa-solid fa-tag" style="font-size:7px"></i>Etiket</div>
+        <div class="pg9">
+          ${POS9K.map((k,i)=>`<button class="pg9-c${k===tagPos?' on':''}" data-tk="${k}" onclick="setTagPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="sf"><div class="sf-row"><label class="fl">Yatay İçeri Alma <span id="v-inset">${textInset}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="30" value="${textInset}" oninput="setInset(this.value);updateVal('v-inset',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="divr"></div>
+    <div class="slbl">Tasarım Düzeni</div>
+    <div class="flip-row">
+      <button class="flip-btn${imgSide==='right'?' on':''}" data-side="right" onclick="setLayout('right')"><i class="fa-solid fa-image"></i> Foto Sağ / Metin Sol</button>
+      <button class="flip-btn${imgSide==='left'?' on':''}" data-side="left" onclick="setLayout('left')"><i class="fa-solid fa-reply"></i> Foto Sol / Metin Sağ</button>
+    </div>`;
+
+  if(name==='etiket') return `
+    <div class="slbl">Hazır Etiketler</div><div class="ptg" id="preset-grid"></div>
+    <div class="slbl">Özel Etiket</div>
+    <div class="ctf">
+      <label>Metin</label><input type="text" id="inp-tag" placeholder="Etiket yazısı...">
+      <label>İkon (FA)</label><input type="text" id="inp-icon" placeholder="fa-bolt, fa-fire...">
+      <div class="ctr2">
+        <div style="display:flex;flex-direction:column;gap:2px;align-items:center"><span style="font-size:7px;color:var(--muted)">ARK.</span><input type="color" id="ctbg" value="#cc2200"></div>
+        <div style="display:flex;flex-direction:column;gap:2px;align-items:center"><span style="font-size:7px;color:var(--muted)">YZI</span><input type="color" id="ctfg" value="#ffffff"></div>
+        <button class="addtag" onclick="addCustomTag()"><i class="fa-solid fa-plus"></i> Ekle</button>
+      </div>
+    </div>
+    <div class="slbl">Aktif Etiketler</div>
+    <div class="tgl" id="tag-list"><span style="color:var(--muted);font-size:11px">Henüz etiket yok</span></div>
+    <div class="tr-row"><span>Görünür</span><label class="tog"><input type="checkbox" id="tog-tags" onchange="showTagBar(this.checked)"><span class="ts2"></span></label></div>`;
+
+  if(name==='gorsel') return `
+    <div class="upbtn"><input type="file" accept="image/*" onchange="loadImg(this)"><i class="fa-solid fa-folder-open"></i> Fotoğraf Yükle</div>
+    <div class="cr"><div class="ci"><label>Panel Rengi</label><div class="cpw"><input type="color" id="pc" value="#1a1a2e" oninput="setPanelColor(this.value);updateHex('phx',this.value)"><span id="phx">#1A1A2E</span></div></div></div>
+    <div class="sf"><div class="sf-row"><label class="fl">Foto Genişliği <span id="v-iw">${imgWidth}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="30" max="100" value="${imgWidth}" oninput="setImgWidth(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="sf"><div class="sf-row"><label class="fl">Geçiş Bşl. <span id="v-fd">${fadeStart}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="70" value="${fadeStart}" oninput="setFadeStart(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="divr"></div><div class="slbl">Efektler</div>
+    <div class="sf"><div class="sf-row"><label class="fl">Bulanıklık <span id="v-blur">${fBlur}</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="30" value="${fBlur}" oninput="setF('blur',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="sf"><div class="sf-row"><label class="fl">Karartma <span id="v-dark">${fDark}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="90" value="${fDark}" oninput="setF('dark',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="sf"><div class="sf-row"><label class="fl">Doygunluk <span id="v-sat">${fSat}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="200" value="${fSat}" oninput="setF('sat',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
+    <div class="slbl">Hızlı Efekt</div>
+    <div class="qrow">
+      <button class="qb" onclick="quickF('normal')"><i class="fa-solid fa-image"></i>Normal</button>
+      <button class="qb" onclick="quickF('bw')"><i class="fa-solid fa-circle-half-stroke"></i>S/B</button>
+      <button class="qb" onclick="quickF('dark')"><i class="fa-solid fa-moon"></i>Karanlık</button>
+      <button class="qb" onclick="quickF('vivid')"><i class="fa-solid fa-sun"></i>Canlı</button>
+    </div>`;
+
+  if(name==='indir') return `
+    <div class="rf"><label>Çözünürlük</label><select class="ssel" id="dl-sz"><option value="1">1920×540px Önizleme</option><option value="2" selected>3840×1080px Native ✓</option><option value="4">7680×2160px HiDPI</option></select></div>
+    <div class="rf"><label>Format</label><select class="ssel" id="dl-fmt"><option value="png">PNG</option><option value="jpeg">JPEG</option></select></div>
+    <button class="bndl" onclick="doDownload()"><i class="fa-solid fa-download"></i>&nbsp; BANNER İNDİR</button>
+    <div style="font-size:8px;color:var(--muted);text-align:center;line-height:1.8">Pixel-perfect canvas — WYSIWYG</div>`;
+
+  if(name==='ayarlar') return `
+    <div class="stsec">
+      <h4>Görünüm Teması</h4>
+      <div class="thr">
+        <button class="thb${curTheme==='dark'?' on':''}" onclick="setTheme('dark')"><i class="fa-solid fa-moon"></i>Karanlık</button>
+        <button class="thb${curTheme==='light'?' on':''}" onclick="setTheme('light')"><i class="fa-solid fa-sun"></i>Açık</button>
+        <button class="thb${curTheme==='system'?' on':''}" onclick="setTheme('system')"><i class="fa-solid fa-circle-half-stroke"></i>Sistem</button>
+      </div>
+    </div>
+    <div class="stsec">
+      <h4>Genel</h4>
+      <div class="tr-row"><span>Floating Toolbar</span><label class="tog"><input type="checkbox" checked onchange="document.getElementById('ftb').style.display=this.checked?'':'none'"><span class="ts2"></span></label></div>
+      <div class="tr-row" style="margin-top:5px"><span>Fotoğraf Mini Bar</span><label class="tog"><input type="checkbox" checked onchange="document.getElementById('pmb').style.visibility=this.checked?'':'hidden'"><span class="ts2"></span></label></div>
+    </div>
+    <div class="stsec">
+      <h4>Hakkında</h4>
+      <div style="font-size:9.5px;color:var(--muted);line-height:1.9">Haber Banner Editörü <strong style="color:var(--accent)">v9</strong><br>${FONTS.length} Google Fonts • Push Layout • Canvas Render<br>Üst/Alt Metin • Dual 3×3 Grid • Anlık Flip</div>
+    </div>`;
+  return '';
+}
+
+/* ═══ ALIGN BUTTON HELPER ═══ */
+function setAlignBtn(btn,dir){
+  // find all align buttons in same parent (fmt-bar)
+  const bar=btn.closest('.fmt-bar');
+  if(bar){bar.querySelectorAll('.ab').forEach(b=>b.classList.toggle('on',b.dataset.a===dir));}
+}
+
+/* ═══ SANITIZE ═══ */
+function sanitize(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');}
+
+/* ═══ THEME SETTER ═══ */
+function setTheme(t){
+  applyTheme(t);
+  document.querySelectorAll('.thb').forEach(b=>{
+    const is=(t==='dark'&&b.textContent.includes('Karanlık'))||(t==='light'&&b.textContent.includes('Açık'))||(t==='system'&&b.textContent.includes('Sistem'));
+    b.classList.toggle('on',is);
+  });
+}
+
+/* ═══ DOWNLOAD ═══ */
+async function doDownload(){
+  const ld=document.getElementById('loading');ld.classList.add('on');
+  try{
+    const sc=parseInt((document.getElementById('dl-sz')||{value:'2'}).value)||2;
+    const fmt=(document.getElementById('dl-fmt')||{value:'png'}).value||'png';
+    const RW=BW*sc,RH=BH*sc;
+    const cv=document.createElement('canvas');cv.width=RW;cv.height=RH;
+    const ctx=cv.getContext('2d');
+    ctx.fillStyle=panelColor;ctx.fillRect(0,0,RW,RH);
+    if(uImg){
+      const oc=document.createElement('canvas');oc.width=RW;oc.height=RH;
+      const oc2=oc.getContext('2d');
+      oc2.save();oc2.translate(pX*sc,pY*sc);oc2.rotate(pRot*Math.PI/180);
+      oc2.drawImage(uImg,-(uImg.naturalWidth*pSc*sc)/2,-(uImg.naturalHeight*pSc*sc)/2,uImg.naturalWidth*pSc*sc,uImg.naturalHeight*pSc*sc);
+      oc2.restore();
+      const fs=[fBlur>0?`blur(${fBlur}px)`:'',fSat!==100?`saturate(${fSat}%)`:''].filter(Boolean).join(' ')||'none';
+      ctx.filter=fs;ctx.drawImage(oc,0,0);ctx.filter='none';
+      if(fDark>0){ctx.fillStyle=`rgba(0,0,0,${fDark/100})`;ctx.fillRect(0,0,RW,RH);}
+    }
+    const rgb=h2r(panelColor);
+    const fw=BW*(imgWidth/100)*sc;
+    const s0=fadeStart/100,s1=Math.min(fadeStart+25,88)/100,s2=Math.min(fadeStart+50,100)/100;
+    const grad=ctx.createLinearGradient(imgSide==='right'?RW:fw,0,imgSide==='right'?RW-fw:0,0);
+    grad.addColorStop(0,`rgba(${rgb},0)`);grad.addColorStop(s0,`rgba(${rgb},0)`);grad.addColorStop(s1,`rgba(${rgb},.5)`);grad.addColorStop(s2,`rgba(${rgb},1)`);grad.addColorStop(1,`rgba(${rgb},1)`);
+    ctx.fillStyle=grad;ctx.fillRect(0,0,RW,RH);
+    const bn=document.getElementById('banner');
+    const ce=bn.querySelectorAll('[contenteditable]');ce.forEach(el=>{el._o=el.style.outline;el.style.outline='none';});
+    document.getElementById('photo-canvas').style.display='none';
+    document.getElementById('color-panel').style.display='none';
+    document.getElementById('photo-fade').style.opacity='0';
+    document.getElementById('tpo').style.display='none';
+    const tc=await html2canvas(bn,{scale:sc,useCORS:true,allowTaint:true,backgroundColor:null,logging:false,width:BW,height:BH});
+    document.getElementById('photo-canvas').style.display='';document.getElementById('color-panel').style.display='';
+    document.getElementById('photo-fade').style.opacity='';document.getElementById('tpo').style.display='';
+    ce.forEach(el=>{el.style.outline=el._o||'';});
+    ctx.drawImage(tc,0,0,RW,RH);
+    const mime=fmt==='jpeg'?'image/jpeg':'image/png';const q=fmt==='jpeg'?.93:undefined;
+    const url=q?cv.toDataURL(mime,q):cv.toDataURL(mime);
+    const a=document.createElement('a');a.download=`banner-${Date.now()}.${fmt}`;a.href=url;a.click();
+    toast('Banner indirildi! 🎉');
+  }catch(e){console.error(e);alert('Hata: '+e.message);}
+  ld.classList.remove('on');
+}
+
+/* ═══ TOAST ═══ */
+let _tt;
+function toast(msg){const t=document.getElementById('toast');document.getElementById('tmsg').textContent=msg;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),2600);}
+
+/* ═══ INIT ═══ */
+function init(){
+  scaleBanner();
+  document.getElementById('color-panel').style.background=panelColor;
+  rebuildFade();
+  // Default text
+  const mt=document.getElementById('main-text');
+  mt.textContent='Fatma Öğretmenin Adı Okuluna Verildi';
+  document.getElementById('blk-main').style.display='block';
+  document.getElementById('blk-ust').style.display='none';
+  document.getElementById('blk-alt').style.display='none';
+  setTextPos('bot-left');
+  applyTextInset();
+  drawPhoto();
+}
+init();
+</script>
+</body>
+</html>
