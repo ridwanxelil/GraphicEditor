@@ -10,7 +10,7 @@
 /* ══ THEME TOKENS ══ */
 :root {
   --accent:#f0a500; --adim:rgba(240,165,0,.13); --green:#22c55e; --red:#e74c3c;
-  --r:6px; --rs:4px; --tr:.15s ease; --nav-h:56px; --panel-h:52vh; --max-w:920px;
+  --r:6px; --rs:4px; --tr:.15s ease; --nav-h:72px; --panel-h:52vh; --max-w:920px;
   --panel-transition:.3s cubic-bezier(.4,0,.2,1);
 }
 [data-theme=dark]{
@@ -31,14 +31,14 @@ body{background:var(--bg);font-family:'Fira Sans',sans-serif;font-size:13px;colo
 #shell{width:100%;max-width:var(--max-w);height:100%;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.5)}
 
 /* ── TOPBAR ── */
-#topbar{height:42px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 10px;gap:6px;flex-shrink:0;z-index:400;transition:background .2s}
-.tb-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;white-space:nowrap;padding-right:9px;border-right:1px solid var(--border)}
+#topbar{height:56px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;gap:8px;flex-shrink:0;z-index:400;transition:background .2s}
+.tb-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;white-space:nowrap;padding-right:12px;border-right:1px solid var(--border)}
 .tb-logo em{color:var(--text);opacity:.3;font-style:normal;font-weight:300}
 .spacer{flex:1}
-.tib{background:var(--ibg);border:1px solid var(--border);border-radius:var(--rs);color:var(--muted);cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.tib{background:var(--ibg);border:1px solid var(--border);border-radius:var(--rs);color:var(--muted);cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--tr)}
 .tib:hover{background:var(--ihov);color:var(--text);border-color:var(--border2)}
 .tib.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
-.btn-dl{background:linear-gradient(135deg,var(--accent),#c88800);border:none;color:#1a0800;font-weight:800;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;border-radius:var(--rs);padding:5px 11px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:filter var(--tr)}
+.btn-dl{background:linear-gradient(135deg,var(--accent),#c88800);border:none;color:#1a0800;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border-radius:var(--rs);padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:filter var(--tr)}
 .btn-dl:hover{filter:brightness(1.1)}
 
 /* ── MAIN ── */
@@ -61,10 +61,10 @@ body{background:var(--bg);font-family:'Fira Sans',sans-serif;font-size:13px;colo
 .tag-item .ts{opacity:.4}
 
 /* ── TEXT OVERLAY ── */
-#text-overlay{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;pointer-events:none;padding:27px 96px;justify-content:flex-end;align-items:flex-start}
-.text-block{padding:2px 0;position:relative;pointer-events:all}
+#text-overlay{position:absolute;top:0;bottom:0;left:0;right:0;z-index:3;display:flex;flex-direction:column;pointer-events:none;padding:27px 96px;justify-content:flex-end;align-items:flex-start}
+.text-block{padding:2px 0;position:relative;pointer-events:all;width:100%}
 .text-bg{position:absolute;inset:0;pointer-events:none;z-index:-1;background:transparent}
-#main-text{font-family:'Bebas Neue',sans-serif;font-size:100px;letter-spacing:2px;color:#fff;line-height:.95;text-shadow:4px 4px 20px rgba(0,0,0,.95);display:block;outline:none;min-width:20px;white-space:pre-wrap;word-break:break-word;text-align:center}
+#main-text{font-family:'Bebas Neue',sans-serif;font-size:100px;letter-spacing:2px;color:#fff;line-height:.95;text-shadow:4px 4px 20px rgba(0,0,0,.95);display:block;outline:none;min-width:20px;white-space:pre-wrap;word-break:break-word;text-align:center;width:100%}
 #ust-text,#alt-text{display:block;outline:none;min-width:20px;white-space:pre-wrap;word-break:break-word;width:100%;text-align:center}
 #ust-text{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:3px;font-weight:400;color:rgba(255,255,255,.85);line-height:1.2;text-shadow:2px 2px 10px rgba(0,0,0,.9);text-transform:uppercase}
 #alt-text{font-family:'Oswald',sans-serif;font-size:24px;letter-spacing:2px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.3;text-shadow:2px 2px 8px rgba(0,0,0,.9)}
@@ -72,7 +72,21 @@ body{background:var(--bg);font-family:'Fira Sans',sans-serif;font-size:13px;colo
 [contenteditable][data-placeholder]:empty::before{content:attr(data-placeholder);color:rgba(255,255,255,.28);pointer-events:none;font-style:italic}
 
 /* ── PHOTO FADE ── */
-#photo-fade{position:absolute;top:0;bottom:0;right:0;width:62%;z-index:2;pointer-events:none;transition:none}
+#photo-fade{position:absolute;top:0;bottom:0;left:0;width:62%;z-index:2;pointer-events:none;transition:none}
+
+/* ── PHOTO PLACEHOLDER ── */
+#photo-placeholder{position:absolute;top:0;bottom:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;cursor:pointer;transition:background .2s,opacity .2s;background:rgba(10,16,40,.55);border:2px dashed rgba(255,255,255,.15)}
+#photo-placeholder i{font-size:80px;color:rgba(255,255,255,.25);pointer-events:none;transition:color .2s,transform .2s}
+#photo-placeholder span{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:700;pointer-events:none}
+#photo-placeholder:hover{background:rgba(240,165,0,.12);border-color:rgba(240,165,0,.4)}
+#photo-placeholder:hover i{color:rgba(240,165,0,.7);transform:scale(1.08)}
+#photo-placeholder:hover span{color:rgba(240,165,0,.8)}
+#photo-placeholder.hidden{display:none}
+
+/* ── PHOTO INTERACT LAYER ── */
+#photo-interact{position:absolute;top:0;bottom:0;z-index:3;cursor:grab;display:none}
+#photo-interact.on{display:block}
+#photo-interact.dragging{cursor:grabbing}
 
 /* ── TAG POS OVERLAY ── */
 #tpo{position:absolute;inset:0;z-index:20;display:none;pointer-events:none}
@@ -88,74 +102,74 @@ body{background:var(--bg);font-family:'Fira Sans',sans-serif;font-size:13px;colo
 #quick-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 
 /* ── PHOTO MINI BAR ── */
-#pmb{display:none;align-items:center;justify-content:center;gap:4px;padding:4px 8px;background:var(--panel2);border-top:1px solid var(--border);flex-shrink:0;transition:background .2s;flex-wrap:wrap}
+#pmb{display:none;align-items:center;justify-content:center;gap:5px;padding:5px 10px;background:var(--panel2);border-top:1px solid var(--border);flex-shrink:0;transition:background .2s;flex-wrap:wrap}
 #pmb.on{display:flex}
-.pmb-b{background:var(--ibg);border:1px solid var(--border2);border-radius:3px;color:var(--muted);cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all var(--tr);user-select:none}
+.pmb-b{background:var(--ibg);border:1px solid var(--border2);border-radius:4px;color:var(--muted);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all var(--tr);user-select:none}
 .pmb-b:hover{background:var(--ihov);color:var(--text)}
 .pmb-b.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
-.pmb-s{width:1px;height:14px;background:var(--border2);flex-shrink:0}
-.pmb-r{-webkit-appearance:none;width:60px;height:3px;background:rgba(128,128,128,.25);border-radius:2px;outline:none;cursor:pointer}
-.pmb-r::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--accent);border-radius:50%;cursor:pointer}
-.pmb-lbl{font-size:6.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.pmb-s{width:1px;height:18px;background:var(--border2);flex-shrink:0}
+.pmb-r{-webkit-appearance:none;width:70px;height:4px;background:rgba(128,128,128,.25);border-radius:2px;outline:none;cursor:pointer}
+.pmb-r::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--accent);border-radius:50%;cursor:pointer}
+.pmb-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
 
 /* ── PANEL ZONE ── */
 #pz{flex:0 0 0px;overflow:hidden;display:flex;flex-direction:column;background:var(--panel);border-top:1px solid var(--border2);transition:flex-basis var(--panel-transition),background .2s}
-#sph{height:34px;display:flex;align-items:center;padding:0 11px;gap:7px;border-bottom:1px solid var(--border);flex-shrink:0}
-#spt{font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex:1}
-#spc-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:10px;padding:3px 5px;border-radius:3px;transition:all var(--tr)}
+#sph{height:44px;display:flex;align-items:center;padding:0 14px;gap:8px;border-bottom:1px solid var(--border);flex-shrink:0}
+#spt{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;flex:1}
+#spc-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:4px 7px;border-radius:4px;transition:all var(--tr)}
 #spc-btn:hover{color:var(--text);background:var(--ibg)}
-#spc{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
-#spc::-webkit-scrollbar{width:3px}
+#spc{flex:1;overflow-y:auto;overflow-x:hidden;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+#spc::-webkit-scrollbar{width:4px}
 #spc::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 
 /* ── BOTTOM NAV ── */
 #bnav{height:var(--nav-h);background:var(--panel2);border-top:1px solid var(--border);display:flex;align-items:stretch;flex-shrink:0;z-index:500;transition:background .2s}
-.nb{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:6px;letter-spacing:.4px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);position:relative;padding:0;user-select:none}
-.nb i{font-size:14px}
+.nb{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;letter-spacing:.4px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);position:relative;padding:0;user-select:none}
+.nb i{font-size:24px}
 .nb:hover{color:var(--text);background:var(--ibg)}
 .nb.on{color:var(--accent)}
-.nb.on::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--accent);border-radius:0 0 3px 3px}
+.nb.on::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--accent);border-radius:0 0 3px 3px}
 
 /* ── FLOATING TOOLBAR ── */
-#ftb{position:fixed;z-index:9000;background:var(--panel2);border:1px solid var(--border2);border-radius:7px;padding:3px 5px;display:none;align-items:center;gap:2px;box-shadow:var(--sh);pointer-events:all;transition:background .2s}
+#ftb{position:fixed;z-index:9000;background:var(--panel2);border:1px solid var(--border2);border-radius:8px;padding:4px 7px;display:none;align-items:center;gap:3px;box-shadow:var(--sh);pointer-events:all;transition:background .2s}
 #ftb.on{display:flex}
-.fb{background:none;border:1px solid transparent;border-radius:3px;color:var(--muted);cursor:pointer;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.fb{background:none;border:1px solid transparent;border-radius:4px;color:var(--muted);cursor:pointer;width:34px;height:32px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--tr)}
 .fb:hover{background:var(--ibg);color:var(--text);border-color:var(--border2)}
 .fb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
-.fbs{width:1px;height:14px;background:var(--border2);margin:0 2px;flex-shrink:0}
-.fc{position:relative;width:26px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid transparent;border-radius:3px;transition:all var(--tr)}
+.fbs{width:1px;height:18px;background:var(--border2);margin:0 3px;flex-shrink:0}
+.fc{position:relative;width:34px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid transparent;border-radius:4px;transition:all var(--tr)}
 .fc:hover{background:var(--ibg);border-color:var(--border2)}
 .fc input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.fc i{font-size:10px;color:var(--accent);pointer-events:none}
+.fc i{font-size:14px;color:var(--accent);pointer-events:none}
 
 /* ── FORM ELEMENTS ── */
-.fl{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+.fl{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
 .rf{display:flex;flex-direction:column;gap:3px}
-.rf label,.rf>span{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-.rf textarea,.rf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);padding:5px 8px;font-size:13px;outline:none;resize:vertical;min-height:30px;font-family:inherit;transition:border-color var(--tr),background .2s,color .2s;width:100%}
-.rf textarea{min-height:44px}
+.rf label,.rf>span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.rf textarea,.rf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);padding:7px 10px;font-size:15px;outline:none;resize:vertical;min-height:36px;font-family:inherit;transition:border-color var(--tr),background .2s,color .2s;width:100%}
+.rf textarea{min-height:52px}
 .rf textarea:focus,.rf input[type=text]:focus{border-color:var(--accent)}
 .cr{display:flex;gap:6px}
 .ci{display:flex;flex-direction:column;gap:3px;flex:1}
-.ci label,.ci>span{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-.cpw{display:flex;align-items:center;gap:4px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:3px 6px}
-.cpw input[type=color]{width:15px;height:15px;border:none;border-radius:2px;cursor:pointer;background:none;padding:0;flex-shrink:0}
-.cpw span{font-size:8.5px;color:var(--muted);font-family:monospace}
+.ci label,.ci>span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.cpw{display:flex;align-items:center;gap:5px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:4px 8px}
+.cpw input[type=color]{width:20px;height:20px;border:none;border-radius:2px;cursor:pointer;background:none;padding:0;flex-shrink:0}
+.cpw span{font-size:11px;color:var(--muted);font-family:monospace}
 .sf{display:flex;flex-direction:column;gap:3px}
-.sf label{font-size:7.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.sf label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
 .sf label span{color:var(--accent);font-weight:700}
 .sw{display:flex;align-items:center;gap:5px}
-input[type=range]{-webkit-appearance:none;flex:1;height:3px;background:var(--ibg);border-radius:2px;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;background:var(--accent);border-radius:50%;cursor:pointer}
-.ni{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);width:38px;text-align:center;font-size:10px;padding:3px;outline:none;transition:background .2s,color .2s}
+input[type=range]{-webkit-appearance:none;flex:1;height:4px;background:var(--ibg);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--accent);border-radius:50%;cursor:pointer}
+.ni{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);width:44px;text-align:center;font-size:13px;padding:4px;outline:none;transition:background .2s,color .2s}
 .ni:focus{border-color:var(--accent)}
 
 /* ── STEPPER ── */
-.stp{display:flex;align-items:center;background:var(--ibg);border:1px solid var(--border2);border-radius:30px;overflow:hidden;height:26px;flex-shrink:0}
-.stp-btn{background:none;border:none;color:var(--muted);cursor:pointer;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:300;transition:all var(--tr);flex-shrink:0;user-select:none;line-height:1}
+.stp{display:flex;align-items:center;background:var(--ibg);border:1px solid var(--border2);border-radius:30px;overflow:hidden;height:34px;flex-shrink:0}
+.stp-btn{background:none;border:none;color:var(--muted);cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:300;transition:all var(--tr);flex-shrink:0;user-select:none;line-height:1}
 .stp-btn:hover{color:var(--accent);background:var(--adim)}
 .stp-btn:active{transform:scale(.88)}
-.stp input[type=number]{background:none;border:none;color:var(--text);font-size:11px;font-weight:500;text-align:center;width:40px;outline:none;padding:0;font-family:inherit;-moz-appearance:textfield;transition:color .15s}
+.stp input[type=number]{background:none;border:none;color:var(--text);font-size:14px;font-weight:500;text-align:center;width:48px;outline:none;padding:0;font-family:inherit;-moz-appearance:textfield;transition:color .15s}
 .stp input[type=number]::-webkit-outer-spin-button,.stp input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .stp input[type=number]:focus{color:var(--accent)}
 .sf-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -163,124 +177,132 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 
 /* ── TOGGLE ── */
 .tr-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.tr-row>label:first-child,.tr-row>span:first-child{font-size:7.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-.tog{position:relative;width:28px;height:16px;flex-shrink:0}
+.tr-row>label:first-child,.tr-row>span:first-child{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.tog{position:relative;width:38px;height:22px;flex-shrink:0}
 .tog input{opacity:0;width:0;height:0}
 .ts2{position:absolute;inset:0;background:var(--ibg);border-radius:20px;cursor:pointer;transition:background var(--tr)}
-.ts2::before{content:'';position:absolute;left:2px;top:1.5px;width:13px;height:13px;background:#888;border-radius:50%;transition:transform var(--tr),background var(--tr)}
+.ts2::before{content:'';position:absolute;left:3px;top:3px;width:16px;height:16px;background:#888;border-radius:50%;transition:transform var(--tr),background var(--tr)}
 .tog input:checked+.ts2{background:var(--accent)}
-.tog input:checked+.ts2::before{transform:translateX(12px);background:#fff}
+.tog input:checked+.ts2::before{transform:translateX(16px);background:#fff}
 
 /* ── SELECT ── */
-select.fsel,select.ssel{background:var(--sel-bg);border:1px solid var(--sel-bd);border-radius:var(--r);color:var(--sel-fg);padding:4px 22px 4px 7px;font-size:11px;outline:none;width:100%;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23888'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;transition:background .2s,color .2s,border-color .2s}
+select.fsel,select.ssel{background:var(--sel-bg);border:1px solid var(--sel-bd);border-radius:var(--r);color:var(--sel-fg);padding:6px 28px 6px 10px;font-size:13px;outline:none;width:100%;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23888'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;transition:background .2s,color .2s,border-color .2s}
 select.fsel:focus,select.ssel:focus{border-color:var(--accent)}
 select.fsel option,select.ssel option{background:var(--sel-bg);color:var(--sel-fg)}
 
 /* ── UPLOAD BTN ── */
-.upbtn{background:var(--ibg);border:1.5px dashed var(--border2);border-radius:var(--r);padding:10px;cursor:pointer;font-size:11px;color:var(--muted);transition:all var(--tr);position:relative;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.upbtn{background:var(--ibg);border:1.5px dashed var(--border2);border-radius:var(--r);padding:14px;cursor:pointer;font-size:14px;color:var(--muted);transition:all var(--tr);position:relative;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px}
 .upbtn:hover{border-color:var(--accent);color:var(--accent)}
 .upbtn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 
 /* ── MISC ── */
 .divr{height:1px;background:var(--border)}
-.slbl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding-bottom:3px;border-bottom:1px solid var(--border);margin-bottom:1px}
+.slbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding-bottom:4px;border-bottom:1px solid var(--border);margin-bottom:2px}
 
 /* ── 3×3 GRID ── */
-.dual-pos{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.dpos-wrap{display:flex;flex-direction:column;gap:3px}
-.dpos-label{font-size:6px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:4px}
-.pg9{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:3px}
-.pg9-c{background:rgba(128,128,128,.06);border:1px solid transparent;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:5px 0;transition:all var(--tr);color:var(--muted)}
-.pg9-c i{font-size:8px}
+.dual-pos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dpos-wrap{display:flex;flex-direction:column;gap:4px}
+.dpos-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:4px}
+.pg9{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:4px}
+.pg9-c{background:rgba(128,128,128,.06);border:1px solid transparent;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:8px 0;transition:all var(--tr);color:var(--muted)}
+.pg9-c i{font-size:14px}
 .pg9-c:hover{background:var(--ihov);border-color:var(--border2);color:var(--text)}
 .pg9-c.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
 
 /* ── ALIGN ── */
-.alr{display:flex;gap:3px}
-.ab{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:all var(--tr);font-size:11px}
+.alr{display:flex;gap:4px}
+.ab{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;transition:all var(--tr);font-size:15px}
 .ab:hover{background:var(--ihov);color:var(--text)}
 .ab.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
 
 /* ── METIN TABS ── */
 .mtabs{display:flex;gap:0;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;flex-shrink:0}
-.mtab{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:6px 4px;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);display:flex;align-items:center;justify-content:center;gap:3px}
-.mtab i{font-size:9px}
+.mtab{flex:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:10px 4px;font-size:13px;letter-spacing:1px;text-transform:uppercase;font-family:inherit;transition:all var(--tr);display:flex;align-items:center;justify-content:center;gap:5px}
+.mtab i{font-size:14px}
 .mtab:hover{color:var(--text);background:var(--ihov)}
 .mtab.on{background:var(--adim);color:var(--accent)}
 .mtab-panel{display:none;flex-direction:column;gap:8px}
 .mtab-panel.on{display:flex}
 
 /* ── FORMAT BAR ── */
-.fmt-bar{display:flex;align-items:center;gap:3px;flex-wrap:wrap;padding:4px 0 2px}
-.fmt-b{background:var(--ibg);border:1px solid var(--border2);border-radius:3px;color:var(--muted);cursor:pointer;width:26px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all var(--tr)}
+.fmt-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:5px 0 3px}
+.fmt-b{background:var(--ibg);border:1px solid var(--border2);border-radius:4px;color:var(--muted);cursor:pointer;width:34px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all var(--tr)}
 .fmt-b:hover{background:var(--ihov);color:var(--text)}
 .fmt-b.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
-.fmt-clr{position:relative;width:26px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--ibg);border:1px solid var(--border2);border-radius:3px;transition:all var(--tr)}
+.fmt-clr{position:relative;width:34px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--ibg);border:1px solid var(--border2);border-radius:4px;transition:all var(--tr)}
 .fmt-clr:hover{background:var(--ihov)}
 .fmt-clr input[type=color]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.fmt-clr i{font-size:10px;color:var(--accent);pointer-events:none}
-.fmt-sep{width:1px;height:14px;background:var(--border2);margin:0 1px;flex-shrink:0}
-.fmt-lbl{font-size:6.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;align-self:center;padding:0 2px}
+.fmt-clr i{font-size:14px;color:var(--accent);pointer-events:none}
+.fmt-sep{width:1px;height:18px;background:var(--border2);margin:0 2px;flex-shrink:0}
+.fmt-lbl{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;align-self:center;padding:0 3px}
 
 /* ── TAGS ── */
-.ptg{display:flex;flex-wrap:wrap;gap:4px}
-.ptb{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1.5px solid rgba(255,255,255,.18);transition:all var(--tr);color:#fff;user-select:none}
+.ptg{display:flex;flex-wrap:wrap;gap:5px}
+.ptb{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1.5px solid rgba(255,255,255,.18);transition:all var(--tr);color:#fff;user-select:none}
 .ptb:hover{filter:brightness(1.15)}
-.ctf{display:flex;flex-direction:column;gap:5px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:8px}
-.ctf label{font-size:7.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
-.ctf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);padding:5px 8px;font-size:12px;outline:none;width:100%}
+.ctf{display:flex;flex-direction:column;gap:6px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:10px}
+.ctf label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.ctf input[type=text]{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);padding:6px 10px;font-size:14px;outline:none;width:100%}
 .ctf input:focus{border-color:var(--accent)}
-.ctr2{display:flex;gap:5px;align-items:center}
-.ctr2 input[type=color]{width:22px;height:22px;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;background:none;padding:2px;flex-shrink:0}
-.addtag{flex:1;background:var(--accent);border:none;color:#000;font-weight:700;font-size:10px;letter-spacing:1px;border-radius:var(--rs);padding:6px;cursor:pointer;font-family:inherit;transition:filter var(--tr)}
+.ctr2{display:flex;gap:6px;align-items:center}
+.ctr2 input[type=color]{width:28px;height:28px;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;background:none;padding:2px;flex-shrink:0}
+.addtag{flex:1;background:var(--accent);border:none;color:#000;font-weight:700;font-size:13px;letter-spacing:1px;border-radius:var(--rs);padding:8px;cursor:pointer;font-family:inherit;transition:filter var(--tr)}
 .addtag:hover{filter:brightness(1.1)}
-.tgl{display:flex;flex-wrap:wrap;gap:4px}
-.tpill{background:var(--adim);border:1px solid var(--accent);color:var(--accent);padding:2px 7px;border-radius:20px;font-size:9.5px;display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.tgl{display:flex;flex-wrap:wrap;gap:5px}
+.tpill{background:var(--adim);border:1px solid var(--accent);color:var(--accent);padding:4px 10px;border-radius:20px;font-size:12px;display:inline-flex;align-items:center;gap:5px;cursor:pointer}
 .tpill:hover{background:rgba(240,165,0,.22)}
-.tpill .rm{color:var(--red);font-weight:900;font-size:12px;line-height:1}
+.tpill .rm{color:var(--red);font-weight:900;font-size:15px;line-height:1}
 
 /* ── QUICK FILTERS ── */
-.qrow{display:flex;gap:3px;flex-wrap:wrap}
-.qb{flex:1;min-width:48px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:5px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:6.5px;letter-spacing:.4px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
-.qb i{font-size:11px}
+.qrow{display:flex;gap:4px;flex-wrap:wrap}
+.qb{flex:1;min-width:52px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;letter-spacing:.4px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
+.qb i{font-size:18px}
 .qb:hover{background:var(--ihov);color:var(--text)}
 .qb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
 
 /* ── FLIP BUTTONS ── */
-.flip-row{display:flex;gap:5px}
-.flip-btn{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:7px 5px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:8.5px;transition:all var(--tr);font-family:inherit;letter-spacing:.5px;text-transform:uppercase}
+.flip-row{display:flex;gap:6px}
+.flip-btn{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;transition:all var(--tr);font-family:inherit;letter-spacing:.5px;text-transform:uppercase}
 .flip-btn:hover{background:var(--ihov);color:var(--text)}
 .flip-btn.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
-.flip-btn i{font-size:11px}
+.flip-btn i{font-size:16px}
 
 /* ── CARD BUTTONS (lg grid) ── */
-.lb{padding:7px 4px;border:1px solid var(--border2);border-radius:7px;background:var(--ibg);color:var(--muted);font-size:9px;cursor:pointer;text-align:center;transition:all var(--tr);display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
-.lb i{font-size:15px}
+.lb{padding:9px 5px;border:1px solid var(--border2);border-radius:8px;background:var(--ibg);color:var(--muted);font-size:12px;cursor:pointer;text-align:center;transition:all var(--tr);display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit}
+.lb i{font-size:20px}
 .lb.on,.lb:hover{background:var(--adim);border-color:var(--accent);color:var(--accent)}
 .sb-card{background:var(--ibg);border:1px solid var(--border2);border-radius:10px;overflow:hidden;flex-shrink:0}
-.sb-card-head{padding:6px 11px;background:var(--panel2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:6px}
-.sb-card-head small{font-size:8.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sb-card-head{padding:8px 14px;background:var(--panel2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:8px}
+.sb-card-head small{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sb-card-head small i{color:var(--accent)}
-.sb-card-body{padding:5px 8px;display:flex;flex-direction:column;gap:4px}
-.row-form{display:flex;align-items:center;gap:4px;flex-wrap:nowrap}
-.lbl-f{font-size:9.5px;font-weight:600;color:var(--muted);white-space:nowrap;width:60px;flex-shrink:0}
-.val-f{font-size:9.5px;color:var(--muted);width:32px;text-align:right;flex-shrink:0}
+.sb-card-body{padding:7px 10px;display:flex;flex-direction:column;gap:5px}
+.row-form{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.lbl-f{font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;width:72px;flex-shrink:0}
+.val-f{font-size:13px;color:var(--muted);width:38px;text-align:right;flex-shrink:0}
 .flex-f{flex:1 1 0;min-width:0}
 
 /* ── THEME BUTTONS ── */
-.stsec{display:flex;flex-direction:column;gap:7px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:9px}
-.stsec h4{font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.thr{display:flex;gap:4px}
-.thb{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:7px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:7px;letter-spacing:.5px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
-.thb i{font-size:13px}
+.stsec{display:flex;flex-direction:column;gap:8px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--r);padding:12px}
+.stsec h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.thr{display:flex;gap:5px}
+.thb{flex:1;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;padding:10px 5px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;letter-spacing:.5px;text-transform:uppercase;transition:all var(--tr);font-family:inherit}
+.thb i{font-size:18px}
 .thb:hover{background:var(--ihov);color:var(--text)}
 .thb.on{background:var(--adim);border-color:var(--accent);color:var(--accent)}
 
 /* ── DOWNLOAD BUTTON ── */
-.bndl{background:linear-gradient(135deg,var(--accent),#d08800);border:none;color:#1a0800;font-weight:800;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:var(--r);padding:11px;cursor:pointer;transition:all var(--tr);box-shadow:0 4px 20px rgba(240,165,0,.2);font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:7px}
+.bndl{background:linear-gradient(135deg,var(--accent),#d08800);border:none;color:#1a0800;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;border-radius:var(--r);padding:14px;cursor:pointer;transition:all var(--tr);box-shadow:0 4px 20px rgba(240,165,0,.2);font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
 .bndl:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(240,165,0,.4)}
-.btn-ghost{background:var(--ibg);color:var(--muted);border:1px solid var(--border2);border-radius:var(--rs);padding:7px 12px;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--tr);font-family:inherit}
+.btn-ghost{background:var(--ibg);color:var(--muted);border:1px solid var(--border2);border-radius:var(--rs);padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all var(--tr);font-family:inherit}
 .btn-ghost:hover{background:var(--ihov);color:var(--text)}
+
+/* ── EYEDROPPER ── */
+.eydrop-btn{background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs);color:var(--muted);cursor:pointer;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--tr);flex-shrink:0}
+.eydrop-btn:hover{background:var(--adim);border-color:var(--accent);color:var(--accent)}
+.eydrop-btn.picking{background:var(--adim);border-color:var(--accent);color:var(--accent);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.cpw-wrap{display:flex;align-items:center;gap:5px}
+.ftb-eye{width:28px;height:28px;font-size:13px;padding:0}
 
 /* ── GRADIENT CONTROLS ── */
 .grad-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
@@ -319,6 +341,14 @@ select.fsel option,select.ssel option{background:var(--sel-bg);color:var(--sel-f
               <div id="color-panel"></div>
               <canvas id="photo-canvas"></canvas>
               <div id="photo-fade"></div>
+              <!-- PHOTO PLACEHOLDER -->
+              <div id="photo-placeholder" onclick="triggerPhotoUpload()">
+                <input type="file" id="ph-file-input" accept="image/*" style="display:none" onchange="loadImg(this)">
+                <i class="fa-solid fa-image"></i>
+                <span>Fotoğraf Ekle</span>
+              </div>
+              <!-- PHOTO INTERACTION LAYER (zoom + pan) -->
+              <div id="photo-interact"></div>
               <div id="tpo"><div id="tpg"></div></div>
               <div id="tag-bar" class="hidden"></div>
               <div id="text-overlay">
@@ -383,7 +413,6 @@ select.fsel option,select.ssel option{background:var(--sel-bg);color:var(--sel-f
   <!-- BOTTOM NAV -->
   <div id="bnav">
     <button class="nb" data-t="metin" onclick="openTab('metin',this)"><i class="fa-solid fa-pen-nib"></i>Metin</button>
-    <button class="nb" data-t="konum" onclick="openTab('konum',this)"><i class="fa-solid fa-arrows-up-down-left-right"></i>Konum</button>
     <button class="nb" data-t="etiket" onclick="openTab('etiket',this)"><i class="fa-solid fa-tag"></i>Etiket</button>
     <button class="nb" data-t="gorsel" onclick="openTab('gorsel',this)"><i class="fa-solid fa-image"></i>Görsel</button>
     <button class="nb" data-t="renkler" onclick="openTab('renkler',this)"><i class="fa-solid fa-palette"></i>Renkler</button>
@@ -393,13 +422,33 @@ select.fsel option,select.ssel option{background:var(--sel-bg);color:var(--sel-f
 
 <!-- FLOATING TOOLBAR -->
 <div id="ftb">
-  <button class="fb" id="fb-b" onclick="fmt('bold')"><i class="fa-solid fa-bold"></i></button>
-  <button class="fb" id="fb-i" onclick="fmt('italic')"><i class="fa-solid fa-italic"></i></button>
-  <button class="fb" id="fb-u" onclick="fmt('underline')"><i class="fa-solid fa-underline"></i></button>
+  <!-- Satır 1: Temel biçim -->
+  <button class="fb" id="fb-b" onclick="fmt('bold')" title="Kalın (Ctrl+B)"><i class="fa-solid fa-bold"></i></button>
+  <button class="fb" id="fb-i" onclick="fmt('italic')" title="İtalik (Ctrl+I)"><i class="fa-solid fa-italic"></i></button>
+  <button class="fb" id="fb-u" onclick="fmt('underline')" title="Altı Çizili"><i class="fa-solid fa-underline"></i></button>
+  <button class="fb" id="fb-s" onclick="fmt('strikeThrough')" title="Üstü Çizili"><i class="fa-solid fa-strikethrough"></i></button>
+  <button class="fb" id="fb-sup" onclick="fmt('superscript')" title="Üst Simge"><i class="fa-solid fa-superscript"></i></button>
+  <button class="fb" id="fb-sub" onclick="fmt('subscript')" title="Alt Simge"><i class="fa-solid fa-subscript"></i></button>
   <div class="fbs"></div>
-  <div class="fc" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#ffffff" oninput="rsel();document.execCommand('foreColor',false,this.value)"></div>
-  <div class="fc" title="Vurgu"><i class="fa-solid fa-highlighter"></i><input type="color" value="#f0a500" oninput="rsel();document.execCommand('hiliteColor',false,this.value)"></div>
-  <button class="fb" onclick="rsel();document.execCommand('removeFormat',false,null)" title="Temizle"><i class="fa-solid fa-eraser"></i></button>
+  <!-- Hizalama -->
+  <button class="fb" onclick="fmtAlign('left')" title="Sola"><i class="fa-solid fa-align-left"></i></button>
+  <button class="fb" onclick="fmtAlign('center')" title="Ortala"><i class="fa-solid fa-align-center"></i></button>
+  <button class="fb" onclick="fmtAlign('right')" title="Sağa"><i class="fa-solid fa-align-right"></i></button>
+  <div class="fbs"></div>
+  <!-- Renkler + damlacık -->
+  <div class="fc" title="Yazı Rengi"><i class="fa-solid fa-font"></i><input type="color" id="ftb-fg" value="#ffffff" oninput="rsel();document.execCommand('foreColor',false,this.value)"></div>
+  <button class="fb ftb-eye" onclick="startEyedropperFtb('fg')" title="Damlacık - Yazı"><i class="fa-solid fa-eye-dropper"></i></button>
+  <div class="fc" title="Arka Plan / Vurgu"><i class="fa-solid fa-highlighter"></i><input type="color" id="ftb-bg" value="#f0a500" oninput="rsel();document.execCommand('hiliteColor',false,this.value)"></div>
+  <button class="fb ftb-eye" onclick="startEyedropperFtb('bg')" title="Damlacık - Arka Plan"><i class="fa-solid fa-eye-dropper"></i></button>
+  <div class="fbs"></div>
+  <!-- Font boyutu -->
+  <button class="fb" onclick="ftbFontSize(-1)" title="Küçült"><i class="fa-solid fa-minus"></i></button>
+  <span id="ftb-sz-lbl" style="font-size:11px;color:var(--text);min-width:28px;text-align:center;font-weight:700">—</span>
+  <button class="fb" onclick="ftbFontSize(1)" title="Büyüt"><i class="fa-solid fa-plus"></i></button>
+  <div class="fbs"></div>
+  <!-- Büyük harf / Temizle -->
+  <button class="fb" id="fb-up" onclick="ftbTransform()" title="Büyük/Küçük Harf"><i class="fa-solid fa-text-height"></i></button>
+  <button class="fb" onclick="rsel();document.execCommand('removeFormat',false,null);hideFT()" title="Biçimi Temizle"><i class="fa-solid fa-eraser"></i></button>
 </div>
 
 <div id="loading"><div class="spin"></div><span>HAZIRLANIYOR...</span></div>
@@ -472,10 +521,10 @@ function posCss(key){
 
 /* ══ DEFAULTS ══ */
 const DEFAULTS={
-  panelColor:'#1a1a2e', imgWidth:60, fadeStart:30, imgSide:'right',
+  panelColor:'#1a1a2e', imgWidth:60, fadeStart:30, fadeSharpness:50, imgSide:'left',
   textPos:'mid-right', tagPos:'top-left',
   fBlur:0, fDark:0, fSat:100, fBr:100, fCt:100,
-  textInset:10, layoutFlipped:false,
+  textInset:0, layoutFlipped:false,
   tintColor:'#000000', tintAmount:0,
   gradC1:'#1e3a5f', gradC2:'#0a1020', gradAngle:135, gradSolid:false,
   gradSolidColor:'#1a1a2e',
@@ -483,7 +532,7 @@ const DEFAULTS={
 };
 
 /* ══ STATE ══ */
-let panelColor='#1a1a2e', imgWidth=60, fadeStart=30, imgSide='right';
+let panelColor='#1a1a2e', imgWidth=60, fadeStart=30, fadeSharpness=50, imgSide='left';
 let textPos='mid-right', tagPos='top-left';
 let fBlur=0, fDark=0, fSat=100, fBr=100, fCt=100;
 let activeTab=null, panelOpen=false;
@@ -491,9 +540,10 @@ let uImg=null, pX=0, pY=0, pSc=1, pRot=0, flipH=false, flipV=false;
 let drag=false, dSX=0, dSY=0, dOX=0, dOY=0;
 let pinch=false, pd0=1, ps0=1;
 let tagOverlay=false, curTheme='system';
-let layoutFlipped=false, textInset=10;
+let layoutFlipped=false, textInset=0;
 let tintColor='#000000', tintAmount=0;
 let tags=[];
+let customFonts=[]; // {name, family}
 // Gradient state for bg panel
 let bgC1='#3a5298', bgC2='#6b8fdf', bgAngle=135, bgSolid=false, bgSolidColor='#1a1a2e';
 let _res='1920x540', _fmt='png', _quality=95;
@@ -583,7 +633,7 @@ function openTab(name,btn){
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
   document.getElementById('spc').innerHTML=buildHTML(name);
-  document.getElementById('spt').textContent={metin:'METİN',konum:'KONUM',etiket:'ETİKETLER',gorsel:'GÖRSEL',renkler:'RENKLER',indir:'İNDİR',ayarlar:'AYARLAR'}[name]||name.toUpperCase();
+  document.getElementById('spt').textContent={metin:'METİN',etiket:'ETİKETLER',gorsel:'GÖRSEL',renkler:'RENKLER',indir:'İNDİR',ayarlar:'AYARLAR'}[name]||name.toUpperCase();
   if(name==='etiket')buildPresets();
   panelOpen=true;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
@@ -619,17 +669,24 @@ function setLayout(side){
   layoutFlipped=(side==='left');
   if(uImg){const tw=BW*(imgWidth/100);pX=side==='right'?BW-(tw/2):tw/2;}
   rebuildFade();drawPhoto();
-  const activeKey=layoutFlipped?mirrorPos(textPos):textPos;
-  const f=POS_FLEX[activeKey]||POS_FLEX[textPos];
-  const ov=document.getElementById('text-overlay');
-  ov.style.justifyContent=f.jc;ov.style.alignItems=f.ai;
+  // Keep user's text position - don't mirror it
   applyTextInset();
   document.querySelectorAll('.flip-btn').forEach(b=>b.classList.toggle('on',b.dataset.side===side));
 }
 function applyTextInset(){
   const ov=document.getElementById('text-overlay');
-  const h=Math.max(96,Math.round(BW*(textInset/100)));
+  const h=Math.max(0,Math.round(BW*(textInset/100)));
   ov.style.padding=`27px ${h}px`;
+  // Constrain overlay width per position so center-align works within text column
+  const isCenter=(textPos==='top-center'||textPos==='mid-center'||textPos==='bot-center');
+  if(isCenter){
+    ov.style.width='100%';ov.style.left='0';ov.style.right='0';
+  } else {
+    const isRight=(textPos==='top-right'||textPos==='mid-right'||textPos==='bot-right');
+    ov.style.width='52%';
+    if(isRight){ov.style.left='auto';ov.style.right='0';}
+    else{ov.style.left='0';ov.style.right='auto';}
+  }
 }
 function setInset(v){textInset=parseInt(v);updateVal('v-inset',v);applyTextInset();}
 
@@ -642,14 +699,34 @@ function setPanelColor(h,redraw=true){
 }
 function setImgWidth(v){imgWidth=parseInt(v);updateVal('v-iw',v);rebuildFade();drawPhoto();}
 function setFadeStart(v){fadeStart=parseInt(v);updateVal('v-fd',v);rebuildFade();}
+function setFadeSharpness(v){fadeSharpness=parseInt(v);updateVal('v-fsh',v);rebuildFade();}
 function rebuildFade(){
   const f=document.getElementById('photo-fade');
   const rgb=h2r(panelColor);
-  const s0=fadeStart,s1=Math.min(s0+25,88),s2=Math.min(s0+50,100);
-  const dir=imgSide==='right'?'left':'right';
-  f.style.width=imgWidth+'%';
-  if(imgSide==='right'){f.style.right='0';f.style.left='auto';}else{f.style.left='0';f.style.right='auto';}
-  f.style.background=`linear-gradient(to ${dir},transparent 0%,transparent ${s0}%,rgba(${rgb},.5) ${s1}%,rgba(${rgb},1) ${s2}%,rgba(${rgb},1) 100%)`;
+  // sharpness 0=very soft (spread=60%), 100=sharp (spread=2%)
+  const spread=Math.round(60-fadeSharpness*0.58);
+  const s0=fadeStart;
+  const s1=Math.min(s0+spread*0.4,95);
+  const s2=Math.min(s0+spread,100);
+  if(imgSide==='right'){
+    f.style.right='0';f.style.left='auto';
+    f.style.width=imgWidth+'%';
+    f.style.background=`linear-gradient(to left,transparent 0%,transparent ${s0}%,rgba(${rgb},.5) ${s1}%,rgba(${rgb},1) ${s2}%,rgba(${rgb},1) 100%)`;
+  } else {
+    f.style.left='0';f.style.right='auto';
+    f.style.width=imgWidth+'%';
+    f.style.background=`linear-gradient(to right,transparent 0%,transparent ${s0}%,rgba(${rgb},.5) ${s1}%,rgba(${rgb},1) ${s2}%,rgba(${rgb},1) 100%)`;
+  }
+  // Reposition placeholder and interact layer
+  const ph=document.getElementById('photo-placeholder');
+  const pi=document.getElementById('photo-interact');
+  if(imgSide==='right'){
+    if(ph){ph.style.right='0';ph.style.left='auto';ph.style.width=imgWidth+'%';}
+    if(pi){pi.style.right='0';pi.style.left='auto';pi.style.width=imgWidth+'%';}
+  } else {
+    if(ph){ph.style.left='0';ph.style.right='auto';ph.style.width=imgWidth+'%';}
+    if(pi){pi.style.left='0';pi.style.right='auto';pi.style.width=imgWidth+'%';}
+  }
 }
 
 /* ══ TINT ══ */
@@ -677,6 +754,7 @@ function quickF(t){
 }
 
 /* ══ PHOTO CANVAS ══ */
+function triggerPhotoUpload(){document.getElementById('ph-file-input').click();}
 function loadImgClick(){document.getElementById('pmb-file').click();}
 function loadImg(inp){
   if(!inp.files||!inp.files[0])return;
@@ -686,10 +764,14 @@ function loadImg(inp){
     img.onload=()=>{
       uImg=img;autoFit();drawPhoto();
       document.getElementById('pmb').classList.add('on');
+      // Hide placeholder, show interact layer
+      const ph=document.getElementById('photo-placeholder');if(ph)ph.classList.add('hidden');
+      const pi=document.getElementById('photo-interact');if(pi)pi.classList.add('on');
       const qu=document.getElementById('quick-upload');if(qu)qu.style.display='none';
       const zs=document.getElementById('z-slider');if(zs)zs.value=pSc;
       const pxs=document.getElementById('px-slider');if(pxs){pxs.max=BW;pxs.value=pX;}
       const pys=document.getElementById('py-slider');if(pys){pys.max=BH;pys.value=pY;}
+      setTimeout(analyzePhotoForTextBg,100);
       toast('Görsel yüklendi!');
     };
     img.src=e.target.result;
@@ -752,11 +834,18 @@ document.getElementById('photo-canvas').addEventListener('touchend',e=>{if(e.tou
 function setTextPos(key){
   textPos=key;
   const ov=document.getElementById('text-overlay');
-  const activeKey=layoutFlipped?mirrorPos(key):key;
-  const f=POS_FLEX[activeKey]||POS_FLEX[key];
+  const f=POS_FLEX[key]||POS_FLEX['mid-right'];
   ov.style.justifyContent=f.jc;ov.style.alignItems=f.ai;
   applyTextInset();
   document.querySelectorAll('.pg9-c[data-k]').forEach(b=>b.classList.toggle('on',b.dataset.k===key));
+}
+
+/* Text alignment fix: ensure text-blocks size correctly per position */
+function getTextColumnWidth(){
+  const h=Math.max(0,Math.round(BW*(textInset/100)));
+  const availW=BW-2*h;
+  const isCenter=(textPos==='top-center'||textPos==='mid-center'||textPos==='bot-center');
+  return isCenter?availW:Math.round(availW*0.55);
 }
 
 /* ══ TAG POS OVERLAY ══ */
@@ -800,14 +889,69 @@ document.addEventListener('selectionchange',()=>{
   svRng=sel.getRangeAt(0).cloneRange();
   const rect=sel.getRangeAt(0).getBoundingClientRect();
   const tb=document.getElementById('ftb');tb.classList.add('on');
-  const tw=tb.offsetWidth||170;
-  let x=rect.left+rect.width/2-tw/2;let y=rect.top-40;
+  const tw=tb.offsetWidth||320;
+  let x=rect.left+rect.width/2-tw/2;let y=rect.top-50;
   x=Math.max(4,Math.min(x,window.innerWidth-tw-4));if(y<4)y=rect.bottom+7;
   tb.style.left=x+'px';tb.style.top=y+'px';
+  updateFtbState();
 });
 function hideFT(){document.getElementById('ftb').classList.remove('on');}
 function rsel(){if(!svRng)return;const s=window.getSelection();s.removeAllRanges();s.addRange(svRng);}
-function fmt(cmd){rsel();document.execCommand(cmd,false,null);const m={bold:'fb-b',italic:'fb-i',underline:'fb-u'};const b=document.getElementById(m[cmd]);if(b)b.classList.toggle('on',document.queryCommandState(cmd));}
+function fmt(cmd){rsel();document.execCommand(cmd,false,null);const m={bold:'fb-b',italic:'fb-i',underline:'fb-u',strikeThrough:'fb-s',superscript:'fb-sup',subscript:'fb-sub'};const b=document.getElementById(m[cmd]);if(b)b.classList.toggle('on',document.queryCommandState(cmd));}
+function fmtAlign(dir){rsel();document.execCommand('justify'+dir.charAt(0).toUpperCase()+dir.slice(1),false,null);}
+function ftbFontSize(delta){
+  rsel();
+  const sel=window.getSelection();if(!sel||!sel.rangeCount)return;
+  const range=sel.getRangeAt(0);
+  // Find current font size from selection
+  let node=range.commonAncestorContainer;
+  if(node.nodeType===3)node=node.parentElement;
+  const cs=window.getComputedStyle(node);
+  let sz=Math.round(parseFloat(cs.fontSize)||16);
+  sz=Math.max(6,Math.min(300,sz+delta*2));
+  document.execCommand('fontSize',false,'7');
+  // Replace all font size 7 spans with correct size
+  document.querySelectorAll('#banner font[size="7"]').forEach(el=>{
+    el.removeAttribute('size');el.style.fontSize=sz+'px';
+  });
+  document.getElementById('ftb-sz-lbl').textContent=sz+'px';
+}
+let _ftbTransformState=0;
+function ftbTransform(){
+  rsel();
+  const states=['none','uppercase','capitalize','lowercase'];
+  _ftbTransformState=(_ftbTransformState+1)%states.length;
+  document.execCommand('fontSize',false,'7');
+  document.querySelectorAll('#banner font[size="7"]').forEach(el=>{
+    el.removeAttribute('size');el.style.textTransform=states[_ftbTransformState];
+  });
+  const icons=['fa-text-height','fa-arrow-up','fa-text-width','fa-arrow-down'];
+  const btn=document.getElementById('fb-up');
+  if(btn){btn.querySelector('i').className='fa-solid '+icons[_ftbTransformState];btn.classList.toggle('on',_ftbTransformState!==0);}
+  toast(['Normal','BÜYÜK','İlk Büyük','küçük'][_ftbTransformState]);
+}
+function startEyedropperFtb(which){
+  const inputId=which==='fg'?'ftb-fg':'ftb-bg';
+  startEyedropper(inputId,null,function(c){
+    rsel();
+    if(which==='fg')document.execCommand('foreColor',false,c);
+    else document.execCommand('hiliteColor',false,c);
+    document.getElementById(inputId).value=c;
+  });
+}
+function updateFtbState(){
+  const m={bold:'fb-b',italic:'fb-i',underline:'fb-u',strikeThrough:'fb-s',superscript:'fb-sup',subscript:'fb-sub'};
+  Object.entries(m).forEach(([cmd,id])=>{const b=document.getElementById(id);if(b)b.classList.toggle('on',document.queryCommandState(cmd));});
+  // Update font size display
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount){
+    let node=sel.getRangeAt(0).commonAncestorContainer;
+    if(node.nodeType===3)node=node.parentElement;
+    const sz=Math.round(parseFloat(window.getComputedStyle(node).fontSize)||0);
+    const lbl=document.getElementById('ftb-sz-lbl');
+    if(lbl&&sz)lbl.textContent=sz+'px';
+  }
+}
 document.addEventListener('mousedown',e=>{const ft=document.getElementById('ftb');if(!ft.contains(e.target)&&!document.getElementById('banner').contains(e.target))hideFT();});
 
 /* ══ TAGS ══ */
@@ -883,12 +1027,11 @@ function fmtEl(id,cmd,btn){
   const el=document.getElementById(id);if(!el)return;
   el.focus();document.execCommand(cmd,false,null);
   if(btn){
-    const bar=btn.closest('.fmt-bar');const cmdMap={bold:'fa-bold',italic:'fa-italic',underline:'fa-underline'};
+    const bar=btn.closest('.fmt-bar');const cmdMap={bold:'fa-bold',italic:'fa-italic',underline:'fa-underline',strikeThrough:'fa-strikethrough'};
     if(bar)bar.querySelectorAll('.fmt-b').forEach(b=>{const i=b.querySelector('i');if(i&&i.classList.contains(cmdMap[cmd]))b.classList.toggle('on',document.queryCommandState(cmd));});
   }
 }
 function syncMainText(val){const el=document.getElementById('main-text');if(!el)return;if(el.innerText!==val)el.innerText=val;}
-function fontOpts(sel){return FONTS.map(f=>`<option value="'${f}',sans-serif"${f===sel?' selected':''}>${f}</option>`).join('');}
 
 /* ══ BUILD HTML ══ */
 function buildHTML(name){
@@ -906,20 +1049,26 @@ function buildHTML(name){
       <div class="rf"><textarea id="inp-ust" placeholder="Üst metin..." oninput="setSubText('ust',this.value)">${ustVal}</textarea></div>
       <div class="fmt-bar">
         <span class="fmt-lbl">Biçim:</span>
-        <button class="fmt-b" onclick="fmtEl('ust-text','bold',this)"><i class="fa-solid fa-bold"></i></button>
-        <button class="fmt-b" onclick="fmtEl('ust-text','italic',this)"><i class="fa-solid fa-italic"></i></button>
-        <button class="fmt-b" onclick="fmtEl('ust-text','underline',this)"><i class="fa-solid fa-underline"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','bold',this)" title="Kalın"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','italic',this)" title="İtalik"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','underline',this)" title="Altı Çizili"><i class="fa-solid fa-underline"></i></button>
+        <button class="fmt-b" onclick="fmtEl('ust-text','strikeThrough',this)" title="Üstü Çizili"><i class="fa-solid fa-strikethrough"></i></button>
         <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#e0e0e0" oninput="applySubStyle('ust','color',this.value)"></div>
+        <div class="fmt-clr" title="Vurgu"><i class="fa-solid fa-highlighter"></i><input type="color" value="#f0a500" oninput="fmtEl('ust-text','hiliteColor',null);document.getElementById('ust-text').focus();document.execCommand('hiliteColor',false,this.value)"></div>
         <div class="fmt-sep"></div>
         <button class="ab" data-a="left" onclick="applySubStyle('ust','textAlign','left');setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
         <button class="ab on" data-a="center" onclick="applySubStyle('ust','textAlign','center');setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
         <button class="ab" data-a="right" onclick="applySubStyle('ust','textAlign','right');setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
+        <button class="ab" onclick="const e=document.getElementById('ust-text');e.style.textTransform=e.style.textTransform==='uppercase'?'none':'uppercase'" title="Büyük Harf"><i class="fa-solid fa-text-height"></i></button>
       </div>
       <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-usz">28</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="8" max="200" value="28" oninput="applySubStyle('ust','fontSize',this.value+'px');updateVal('v-usz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-uls">3</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="3" oninput="applySubStyle('ust','letterSpacing',this.value+'px');updateVal('v-uls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="rf"><label>Font</label><select class="fsel" onchange="applySubStyle('ust','fontFamily',this.value)">${fontOpts('Oswald')}</select></div>
       <div class="cr">
-        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="ubg" oninput="setBg('ust',this.value,document.getElementById('ubgo').value);updateHex('ubh',this.value)"><span id="ubh">#000</span></div></div>
+        <div class="ci"><label>Metin Rengi</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" value="#e0e0e0" id="ust-clr" oninput="applySubStyle('ust','color',this.value);updateHex('ust-clrh',this.value)"><span id="ust-clrh">#E0E0E0</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('ust-clr','ust-clrh',function(c){applySubStyle('ust','color',c)})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
+      </div>
+      <div class="cr">
+        <div class="ci"><label>Arka Plan</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" value="#000000" id="ubg" oninput="setBg('ust',this.value,document.getElementById('ubgo').value);updateHex('ubh',this.value)"><span id="ubh">#000000</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('ubg','ubh',function(c){setBg('ust',c,document.getElementById('ubgo').value)})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
         <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="ubgo" min="0" max="100" value="0" oninput="setBg('ust',document.getElementById('ubg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
       </div>
     </div>
@@ -927,23 +1076,26 @@ function buildHTML(name){
       <div class="rf"><textarea id="inp-main" placeholder="Ana metin..." oninput="syncMainText(this.value)">${anaVal}</textarea></div>
       <div class="fmt-bar">
         <span class="fmt-lbl">Biçim:</span>
-        <button class="fmt-b" onclick="fmt('bold')"><i class="fa-solid fa-bold"></i></button>
-        <button class="fmt-b" onclick="fmt('italic')"><i class="fa-solid fa-italic"></i></button>
-        <button class="fmt-b" onclick="fmt('underline')"><i class="fa-solid fa-underline"></i></button>
-        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#ffffff" oninput="document.getElementById('main-text').style.color=this.value"></div>
-        <div class="fmt-clr" title="Gölge"><i class="fa-solid fa-droplet-slash"></i><input type="color" value="#000000" oninput="setShadow(this.value)"></div>
+        <button class="fmt-b" onclick="fmt('bold')" title="Kalın"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmt('italic')" title="İtalik"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmt('underline')" title="Altı Çizili"><i class="fa-solid fa-underline"></i></button>
+        <button class="fmt-b" onclick="fmt('strikeThrough')" title="Üstü Çizili"><i class="fa-solid fa-strikethrough"></i></button>
+        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#ffffff" id="main-clr" oninput="document.getElementById('main-text').style.color=this.value"></div>
+        <button class="eydrop-btn" title="Damlacık renk" onclick="startEyedropper('main-clr',null,function(c){document.getElementById('main-text').style.color=c;document.getElementById('main-clr').value=c})"><i class="fa-solid fa-eye-dropper"></i></button>
+        <div class="fmt-clr" title="Gölge Rengi"><i class="fa-solid fa-droplet-slash"></i><input type="color" value="#000000" oninput="setShadow(this.value)"></div>
         <div class="fmt-sep"></div>
         <button class="ab" data-a="left" onclick="document.getElementById('main-text').style.textAlign='left';setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
         <button class="ab on" data-a="center" onclick="document.getElementById('main-text').style.textAlign='center';setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
         <button class="ab" data-a="right" onclick="document.getElementById('main-text').style.textAlign='right';setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
         <button class="ab" data-a="justify" onclick="document.getElementById('main-text').style.textAlign='justify';setAlignBtn(this,'justify')"><i class="fa-solid fa-align-justify"></i></button>
+        <button class="ab" onclick="const e=document.getElementById('main-text');e.style.textTransform=e.style.textTransform==='uppercase'?'none':'uppercase'" title="Büyük Harf"><i class="fa-solid fa-text-height"></i></button>
       </div>
       <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-sz">100</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="10" max="300" value="100" oninput="document.getElementById('main-text').style.fontSize=this.value+'px';updateVal('v-sz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="sf"><div class="sf-row"><label class="fl">Satır Y. <span id="v-lh">95</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="50" max="200" value="95" oninput="document.getElementById('main-text').style.lineHeight=(this.value/100);updateVal('v-lh',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-ls">2</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="2" oninput="document.getElementById('main-text').style.letterSpacing=this.value+'px';updateVal('v-ls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="rf"><label>Font (${FONTS.length} adet)</label><select class="fsel" onchange="document.getElementById('main-text').style.fontFamily=this.value">${fontOpts('Bebas Neue')}</select></div>
       <div class="cr">
-        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="mbg" oninput="setBg('main',this.value,document.getElementById('mbgo').value);updateHex('mbh',this.value)"><span id="mbh">#000</span></div></div>
+        <div class="ci"><label>Arka Plan</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" value="#000000" id="mbg" oninput="setBg('main',this.value,document.getElementById('mbgo').value);updateHex('mbh',this.value)"><span id="mbh">#000000</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('mbg','mbh',function(c){setBg('main',c,document.getElementById('mbgo').value)})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
         <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="mbgo" min="0" max="100" value="0" oninput="setBg('main',document.getElementById('mbg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
       </div>
     </div>
@@ -951,42 +1103,34 @@ function buildHTML(name){
       <div class="rf"><textarea id="inp-alt" placeholder="Alt metin..." oninput="setSubText('alt',this.value)">${altVal}</textarea></div>
       <div class="fmt-bar">
         <span class="fmt-lbl">Biçim:</span>
-        <button class="fmt-b" onclick="fmtEl('alt-text','bold',this)"><i class="fa-solid fa-bold"></i></button>
-        <button class="fmt-b" onclick="fmtEl('alt-text','italic',this)"><i class="fa-solid fa-italic"></i></button>
-        <button class="fmt-b" onclick="fmtEl('alt-text','underline',this)"><i class="fa-solid fa-underline"></i></button>
-        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#b0b0b0" oninput="applySubStyle('alt','color',this.value)"></div>
+        <button class="fmt-b" onclick="fmtEl('alt-text','bold',this)" title="Kalın"><i class="fa-solid fa-bold"></i></button>
+        <button class="fmt-b" onclick="fmtEl('alt-text','italic',this)" title="İtalik"><i class="fa-solid fa-italic"></i></button>
+        <button class="fmt-b" onclick="fmtEl('alt-text','underline',this)" title="Altı Çizili"><i class="fa-solid fa-underline"></i></button>
+        <button class="fmt-b" onclick="fmtEl('alt-text','strikeThrough',this)" title="Üstü Çizili"><i class="fa-solid fa-strikethrough"></i></button>
+        <div class="fmt-clr" title="Renk"><i class="fa-solid fa-font"></i><input type="color" value="#b0b0b0" id="alt-clr" oninput="applySubStyle('alt','color',this.value)"></div>
+        <button class="eydrop-btn" title="Damlacık renk" onclick="startEyedropper('alt-clr',null,function(c){applySubStyle('alt','color',c);document.getElementById('alt-clr').value=c})"><i class="fa-solid fa-eye-dropper"></i></button>
         <div class="fmt-sep"></div>
         <button class="ab" data-a="left" onclick="applySubStyle('alt','textAlign','left');setAlignBtn(this,'left')"><i class="fa-solid fa-align-left"></i></button>
         <button class="ab on" data-a="center" onclick="applySubStyle('alt','textAlign','center');setAlignBtn(this,'center')"><i class="fa-solid fa-align-center"></i></button>
         <button class="ab" data-a="right" onclick="applySubStyle('alt','textAlign','right');setAlignBtn(this,'right')"><i class="fa-solid fa-align-right"></i></button>
+        <button class="ab" onclick="const e=document.getElementById('alt-text');e.style.textTransform=e.style.textTransform==='uppercase'?'none':'uppercase'" title="Büyük Harf"><i class="fa-solid fa-text-height"></i></button>
       </div>
       <div class="sf"><div class="sf-row"><label class="fl">Boyut <span id="v-alsz">24</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="8" max="200" value="24" oninput="applySubStyle('alt','fontSize',this.value+'px');updateVal('v-alsz',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="sf"><div class="sf-row"><label class="fl">Harf Bşl. <span id="v-alls">2</span>px</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="-5" max="40" value="2" oninput="applySubStyle('alt','letterSpacing',this.value+'px');updateVal('v-alls',this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
       <div class="rf"><label>Font</label><select class="fsel" onchange="applySubStyle('alt','fontFamily',this.value)">${fontOpts('Oswald')}</select></div>
       <div class="cr">
-        <div class="ci"><label>Arka Plan</label><div class="cpw"><input type="color" value="#000000" id="abg" oninput="setBg('alt',this.value,document.getElementById('abgo').value);updateHex('abh',this.value)"><span id="abh">#000</span></div></div>
+        <div class="ci"><label>Arka Plan</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" value="#000000" id="abg" oninput="setBg('alt',this.value,document.getElementById('abgo').value);updateHex('abh',this.value)"><span id="abh">#000000</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('abg','abh',function(c){setBg('alt',c,document.getElementById('abgo').value)})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
         <div class="ci"><label>Opasite %</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="abgo" min="0" max="100" value="0" oninput="setBg('alt',document.getElementById('abg').value,this.value)" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
       </div>
-    </div>`;
-
-  if(name==='konum') return `
-    <div class="dual-pos">
-      <div class="dpos-wrap">
-        <div class="dpos-label"><i class="fa-solid fa-font" style="font-size:7px"></i>Metin</div>
-        <div class="pg9">${POS9K.map((k,i)=>`<button class="pg9-c${k===textPos?' on':''}" data-k="${k}" onclick="setTextPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}</div>
-      </div>
-      <div class="dpos-wrap">
-        <div class="dpos-label"><i class="fa-solid fa-tag" style="font-size:7px"></i>Etiket</div>
-        <div class="pg9">${POS9K.map((k,i)=>`<button class="pg9-c${k===tagPos?' on':''}" data-tk="${k}" onclick="setTagPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}</div>
-      </div>
     </div>
-    <div class="sf"><div class="sf-row"><label class="fl">Yatay İçeri Alma <span id="v-inset">${textInset}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="30" value="${textInset}" oninput="setInset(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
     <div class="divr"></div>
-    <div class="slbl">Tasarım Düzeni</div>
-    <div class="flip-row">
-      <button class="flip-btn${imgSide==='right'?' on':''}" data-side="right" onclick="setLayout('right')"><i class="fa-solid fa-image"></i> Foto Sağ</button>
-      <button class="flip-btn${imgSide==='left'?' on':''}" data-side="left" onclick="setLayout('left')"><i class="fa-solid fa-reply"></i> Foto Sol</button>
-    </div>`;
+    <div class="slbl"><i class="fa-solid fa-arrows-up-down-left-right" style="color:var(--accent)"></i> Metin Konumu</div>
+    <div class="dpos-wrap">
+      <div class="pg9">${POS9K.map((k,i)=>`<button class="pg9-c${k===textPos?' on':''}" data-k="${k}" onclick="setTextPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}</div>
+    </div>
+    <div class="sf"><div class="sf-row"><label class="fl">Yatay İçeri Alma <span id="v-inset">${textInset}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="30" value="${textInset}" oninput="setInset(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>`;
+
+  if(name==='konum') return '';
 
   if(name==='etiket') return `
     <div class="slbl">Hazır Etiketler</div><div class="ptg" id="preset-grid"></div>
@@ -995,18 +1139,29 @@ function buildHTML(name){
       <label>Metin</label><input type="text" id="inp-tag" placeholder="Etiket yazısı...">
       <label>İkon (FA)</label><input type="text" id="inp-icon" placeholder="fa-bolt, fa-fire...">
       <div class="ctr2">
-        <div style="display:flex;flex-direction:column;gap:2px;align-items:center"><span style="font-size:7px;color:var(--muted)">ARK.</span><input type="color" id="ctbg" value="#cc2200"></div>
-        <div style="display:flex;flex-direction:column;gap:2px;align-items:center"><span style="font-size:7px;color:var(--muted)">YZI</span><input type="color" id="ctfg" value="#ffffff"></div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+          <span style="font-size:10px;color:var(--muted)">ARK.</span>
+          <div class="cpw-wrap"><div class="cpw"><input type="color" id="ctbg" value="#cc2200"></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('ctbg',null,null)"><i class="fa-solid fa-eye-dropper"></i></button></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+          <span style="font-size:10px;color:var(--muted)">YAZİ</span>
+          <div class="cpw-wrap"><div class="cpw"><input type="color" id="ctfg" value="#ffffff"></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('ctfg',null,null)"><i class="fa-solid fa-eye-dropper"></i></button></div>
+        </div>
         <button class="addtag" onclick="addCustomTag()"><i class="fa-solid fa-plus"></i> Ekle</button>
       </div>
     </div>
     <div class="slbl">Aktif Etiketler</div>
     <div class="tgl" id="tag-list"><span style="color:var(--muted);font-size:11px">Henüz etiket yok</span></div>
-    <div class="tr-row"><span>Görünür</span><label class="tog"><input type="checkbox" id="tog-tags" ${(!document.getElementById('tag-bar').classList.contains('hidden'))?'checked':''} onchange="showTagBar(this.checked)"><span class="ts2"></span></label></div>`;
+    <div class="tr-row"><span>Görünür</span><label class="tog"><input type="checkbox" id="tog-tags" ${(!document.getElementById('tag-bar').classList.contains('hidden'))?'checked':''} onchange="showTagBar(this.checked)"><span class="ts2"></span></label></div>
+    <div class="divr"></div>
+    <div class="slbl"><i class="fa-solid fa-tag" style="color:var(--accent)"></i> Etiket Konumu</div>
+    <div class="dpos-wrap">
+      <div class="pg9">${POS9K.map((k,i)=>`<button class="pg9-c${k===tagPos?' on':''}" data-tk="${k}" onclick="setTagPos('${k}')"><i class="fa-solid ${POS9I[i]}"></i></button>`).join('')}</div>
+    </div>`;
 
   if(name==='gorsel') return `
     <div class="upbtn"><input type="file" accept="image/*" onchange="loadImg(this)"><i class="fa-solid fa-folder-open"></i> Fotoğraf Yükle</div>
-    <div class="cr"><div class="ci"><label>Panel Rengi</label><div class="cpw"><input type="color" id="pc" value="${panelColor}" oninput="setPanelColor(this.value);updateHex('phx',this.value)"><span id="phx">${panelColor.toUpperCase()}</span></div></div></div>
+    <div class="cr"><div class="ci"><label>Panel Rengi</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" id="pc" value="${panelColor}" oninput="setPanelColor(this.value);updateHex('phx',this.value)"><span id="phx">${panelColor.toUpperCase()}</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('pc','phx',function(c){setPanelColor(c)})"><i class="fa-solid fa-eye-dropper"></i></button></div></div></div>
     <div class="sf"><div class="sf-row"><label class="fl">Foto Genişliği <span id="v-iw">${imgWidth}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="30" max="100" value="${imgWidth}" oninput="setImgWidth(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
     <div class="sf"><div class="sf-row"><label class="fl">Geçiş Bşl. <span id="v-fd">${fadeStart}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-1)">−</button><input type="number" min="0" max="70" value="${fadeStart}" oninput="setFadeStart(this.value)"><button class="stp-btn" onclick="step(this,1)">+</button></div></div></div>
     <div class="divr"></div><div class="slbl">Filtreler</div>
@@ -1017,7 +1172,7 @@ function buildHTML(name){
     <div class="sf"><div class="sf-row"><label class="fl">Karartma <span id="v-dark">${fDark}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" min="0" max="90" value="${fDark}" oninput="setF('dark',this.value)" data-step="5"><button class="stp-btn" onclick="step(this,5)">+</button></div></div></div>
     <div class="divr"></div><div class="slbl">Renk Tonu</div>
     <div class="cr">
-      <div class="ci"><label>Tint Rengi</label><div class="cpw"><input type="color" id="tc-color" value="${tintColor}" oninput="applyTint()"><span>${tintColor.toUpperCase()}</span></div></div>
+      <div class="ci"><label>Tint Rengi</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" id="tc-color" value="${tintColor}" oninput="applyTint()"><span>${tintColor.toUpperCase()}</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('tc-color',null,function(c){document.getElementById('tc-color').value=c;applyTint()})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
       <div class="ci"><label>Miktar <span id="v-tint">${tintAmount}</span>%</label><div class="stp" style="width:100%"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" id="sl-tint" min="0" max="90" value="${tintAmount}" oninput="applyTint()" data-step="5" style="width:100%"><button class="stp-btn" onclick="step(this,5)">+</button></div></div>
     </div>
     <div class="slbl">Hazır Efekt</div>
@@ -1027,6 +1182,12 @@ function buildHTML(name){
       <button class="qb" onclick="quickF('dark')"><i class="fa-solid fa-moon"></i>Karanlık</button>
       <button class="qb" onclick="quickF('vivid')"><i class="fa-solid fa-sun"></i>Canlı</button>
       <button class="qb" onclick="quickF('soft')"><i class="fa-solid fa-feather"></i>Yumuşak</button>
+    </div>
+    <div class="divr"></div>
+    <div class="slbl"><i class="fa-solid fa-layer-group" style="color:var(--accent)"></i> Tasarım Düzeni</div>
+    <div class="flip-row">
+      <button class="flip-btn${imgSide==='right'?' on':''}" data-side="right" onclick="setLayout('right')"><i class="fa-solid fa-image"></i> Foto Sağ</button>
+      <button class="flip-btn${imgSide==='left'?' on':''}" data-side="left" onclick="setLayout('left')"><i class="fa-solid fa-reply"></i> Foto Sol</button>
     </div>`;
 
   if(name==='renkler') return `
@@ -1034,12 +1195,20 @@ function buildHTML(name){
       <div class="sb-card-head"><small><i class="fa-solid fa-fill-drip"></i> Panel Arka Planı</small></div>
       <div class="sb-card-body">
         <div class="cr">
-          <div class="ci"><label>Renk 1</label><div class="cpw"><input type="color" id="bgc1" value="${bgC1}" oninput="bgC1=this.value;applyBgGrad()"><span>${bgC1.toUpperCase()}</span></div></div>
-          <div class="ci"><label>Renk 2</label><div class="cpw"><input type="color" id="bgc2" value="${bgC2}" oninput="bgC2=this.value;applyBgGrad()"><span>${bgC2.toUpperCase()}</span></div></div>
+          <div class="ci"><label>Renk 1</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" id="bgc1" value="${bgC1}" oninput="bgC1=this.value;applyBgGrad()"><span>${bgC1.toUpperCase()}</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('bgc1',null,function(c){bgC1=c;applyBgGrad()})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
+          <div class="ci"><label>Renk 2</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" id="bgc2" value="${bgC2}" oninput="bgC2=this.value;applyBgGrad()"><span>${bgC2.toUpperCase()}</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('bgc2',null,function(c){bgC2=c;applyBgGrad()})"><i class="fa-solid fa-eye-dropper"></i></button></div></div>
         </div>
         <div class="sf"><div class="sf-row"><label class="fl">Açı <span id="v-bga">${bgAngle}</span>°</label><div class="stp"><button class="stp-btn" onclick="step(this,-15)">−</button><input type="number" min="0" max="360" value="${bgAngle}" oninput="bgAngle=parseInt(this.value);updateVal('v-bga',this.value);applyBgGrad()" data-step="15"><button class="stp-btn" onclick="step(this,15)">+</button></div></div></div>
         <div class="tr-row"><span>Düz Renk</span><label class="tog"><input type="checkbox" ${bgSolid?'checked':''} onchange="bgSolid=this.checked;applyBgGrad()"><span class="ts2"></span></label></div>
-        <div class="cr"><div class="ci"><label>Düz Renk</label><div class="cpw"><input type="color" id="bgsc" value="${bgSolidColor}" oninput="bgSolidColor=this.value;applyBgGrad()"><span>${bgSolidColor.toUpperCase()}</span></div></div></div>
+        <div class="cr"><div class="ci"><label>Düz Renk</label><div class="cpw-wrap"><div class="cpw" style="flex:1"><input type="color" id="bgsc" value="${bgSolidColor}" oninput="bgSolidColor=this.value;applyBgGrad()"><span>${bgSolidColor.toUpperCase()}</span></div><button class="eydrop-btn" title="Damlacık" onclick="startEyedropper('bgsc',null,function(c){bgSolidColor=c;applyBgGrad()})"><i class="fa-solid fa-eye-dropper"></i></button></div></div></div>
+      </div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-card-head"><small><i class="fa-solid fa-sliders"></i> Geçiş Ayarları</small></div>
+      <div class="sb-card-body">
+        <div class="sf"><div class="sf-row"><label class="fl">Geçiş Başlangıcı <span id="v-fd2">${fadeStart}</span>%</label><div class="stp"><button class="stp-btn" onclick="step(this,-5)">−</button><input type="number" min="0" max="80" value="${fadeStart}" oninput="setFadeStart(this.value);updateVal('v-fd2',this.value)" data-step="5"><button class="stp-btn" onclick="step(this,5)">+</button></div></div></div>
+        <div class="sf"><div class="sf-row"><label class="fl">Keskinlik <span id="v-fsh">${fadeSharpness}</span></label><div class="stp"><button class="stp-btn" onclick="step(this,-10)">−</button><input type="number" min="0" max="100" value="${fadeSharpness}" oninput="setFadeSharpness(this.value)" data-step="10"><button class="stp-btn" onclick="step(this,10)">+</button></div></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);padding:2px 0"><span>← Yumuşak</span><span>Keskin/Sert →</span></div>
       </div>
     </div>`;
 
@@ -1087,8 +1256,17 @@ function buildHTML(name){
       </div>
     </div>
     <div class="stsec">
+      <h4><i class="fa-solid fa-font" style="color:var(--accent)"></i> Özel Font Yükle</h4>
+      <div style="font-size:10px;color:var(--muted);line-height:1.7;margin-bottom:6px">TTF, OTF, WOFF, WOFF2 desteklenir. Yüklenen font tüm metin seçicilerinde ★ işaretiyle görünür.</div>
+      <label class="upbtn">
+        <input type="file" accept=".ttf,.otf,.woff,.woff2" onchange="loadCustomFont(this)">
+        <i class="fa-solid fa-upload"></i> Font Dosyası Yükle
+      </label>
+      ${customFonts.length?`<div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">${customFonts.map((f,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 8px;background:var(--ibg);border:1px solid var(--border2);border-radius:var(--rs)"><span style="font-family:'${f.family}';font-size:14px">${f.name}</span><button onclick="removeCustomFont(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:13px"><i class="fa-solid fa-xmark"></i></button></div>`).join('')}</div>`:''}
+    </div>
+    <div class="stsec">
       <h4>Hakkında</h4>
-      <div style="font-size:9.5px;color:var(--muted);line-height:1.9">Grafik Editör Pro <strong style="color:var(--accent)">v4</strong><br>${FONTS.length} Google Fonts · Üst/Ana/Alt Metin · Etiket Sistemi<br>Dual 3×3 Grid · Renk Tonu · Hazır Efektler<br>Ayar Export/Import · Tema Desteği</div>
+      <div style="font-size:9.5px;color:var(--muted);line-height:1.9">Grafik Editör Pro <strong style="color:var(--accent)">v7</strong><br>${FONTS.length} Google Fonts · ${customFonts.length} Özel Font · Üst/Ana/Alt Metin<br>Etiket Sistemi · Zoom+Pan · Geçiş Ayarı<br>Ayar Export/Import · Tema Desteği</div>
     </div>`;
   return '';
 }
@@ -1133,16 +1311,21 @@ async function doDownload(){
     out.width=W;out.height=H;
     const ctx=out.getContext('2d');
 
-    // 1. ARKA PLAN
-    if(bgSolid){ctx.fillStyle=bgSolidColor;}
-    else{
-      const g=ctx.createLinearGradient(0,0,W,H);
+    // 1. ARKA PLAN — preview ile birebir aynı: color-panel div ile aynı mantık
+    const cp=document.getElementById('color-panel');
+    const cpBg=cp.style.background||panelColor;
+    if(bgSolid){
+      ctx.fillStyle=bgSolidColor;
+    } else {
+      // Gradient açısına göre doğru yön hesapla
+      const rad=bgAngle*(Math.PI/180);
+      const gx1=W/2-Math.cos(rad)*W/2, gy1=H/2-Math.sin(rad)*H/2;
+      const gx2=W/2+Math.cos(rad)*W/2, gy2=H/2+Math.sin(rad)*H/2;
+      const g=ctx.createLinearGradient(gx1,gy1,gx2,gy2);
       g.addColorStop(0,bgC1);g.addColorStop(1,bgC2);
       ctx.fillStyle=g;
     }
     ctx.fillRect(0,0,W,H);
-    // Panel rengi overlay
-    ctx.fillStyle=panelColor;ctx.fillRect(0,0,W,H);
 
     // 2. FOTOĞRAF
     if(uImg){
@@ -1164,13 +1347,24 @@ async function doDownload(){
       ctx.restore();
     }
 
-    // 3. FADE
+    // 3. FADE — preview ile birebir aynı yön
     const rgb=h2r(panelColor);
-    const fw3=BW*(imgWidth/100)*S;
-    const s0=fadeStart/100,s1=Math.min(fadeStart+25,88)/100,s2=Math.min(fadeStart+50,100)/100;
-    const grad=ctx.createLinearGradient(imgSide==='right'?W:fw3,0,imgSide==='right'?W-fw3:0,0);
-    grad.addColorStop(0,`rgba(${rgb},0)`);grad.addColorStop(s0,`rgba(${rgb},0)`);
-    grad.addColorStop(s1,`rgba(${rgb},.55)`);grad.addColorStop(s2,`rgba(${rgb},1)`);grad.addColorStop(1,`rgba(${rgb},1)`);
+    const fadeW=BW*(imgWidth/100)*S;
+    const spread=Math.round(60-fadeSharpness*0.58);
+    const s0=fadeStart/100,s1=Math.min(fadeStart+spread*0.4,95)/100,s2=Math.min(fadeStart+spread,100)/100;
+    let grad;
+    if(imgSide==='right'){
+      // Foto sağda: fade sağda, to left — sağ=şeffaf, sol=koyu
+      grad=ctx.createLinearGradient(W,0,W-fadeW,0);
+    } else {
+      // Foto solda: fade solda, to right — sol=şeffaf, sağ=koyu
+      grad=ctx.createLinearGradient(0,0,fadeW,0);
+    }
+    grad.addColorStop(0,`rgba(${rgb},0)`);
+    grad.addColorStop(s0,`rgba(${rgb},0)`);
+    grad.addColorStop(s1,`rgba(${rgb},.55)`);
+    grad.addColorStop(s2,`rgba(${rgb},1)`);
+    grad.addColorStop(1,`rgba(${rgb},1)`);
     ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
 
     // 4. ETİKETLER
@@ -1253,7 +1447,170 @@ function roundRect(ctx,x,y,w,h,r){
 let _tt;
 function toast(msg){const t=document.getElementById('toast');document.getElementById('tmsg').textContent=msg;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),2600);}
 
-/* ══ REVERSE SYNC ══ */
+/* ══ EYEDROPPER ══ */
+let _eyedropActive=false,_eyedropInputId=null,_eyedropHexId=null,_eyedropCb=null;
+
+function startEyedropper(inputId,hexId,cb){
+  // Use native EyeDropper API if available
+  if(window.EyeDropper){
+    const ed=new EyeDropper();
+    ed.open().then(r=>{
+      const hex=r.sRGBHex;
+      const inp=document.getElementById(inputId);
+      if(inp)inp.value=hex;
+      if(hexId){const hel=document.getElementById(hexId);if(hel)hel.textContent=hex.toUpperCase();}
+      if(cb)cb(hex);
+      toast('Renk seçildi: '+hex.toUpperCase());
+    }).catch(()=>{});
+    return;
+  }
+  // Fallback: pick color from photo canvas
+  if(!uImg){toast('Önce bir fotoğraf yükleyin!');return;}
+  _eyedropInputId=inputId;_eyedropHexId=hexId;_eyedropCb=cb;
+  _eyedropActive=true;
+  const cv=document.getElementById('photo-canvas');
+  cv.style.cursor='crosshair';
+  document.getElementById('banner').style.cursor='crosshair';
+  toast('Fotoğraftan renk almak için tıklayın');
+}
+
+document.addEventListener('click',function(e){
+  if(!_eyedropActive)return;
+  const cv=document.getElementById('photo-canvas');
+  const bnR=cv.getBoundingClientRect();
+  if(e.clientX>=bnR.left&&e.clientX<=bnR.right&&e.clientY>=bnR.top&&e.clientY<=bnR.bottom){
+    const scl=bnR.width/BW;
+    const x=Math.round((e.clientX-bnR.left)/scl);
+    const y=Math.round((e.clientY-bnR.top)/scl);
+    const ctx=cv.getContext('2d');
+    const px=ctx.getImageData(x,y,1,1).data;
+    const hex='#'+[px[0],px[1],px[2]].map(v=>v.toString(16).padStart(2,'0')).join('');
+    const inp=document.getElementById(_eyedropInputId);
+    if(inp)inp.value=hex;
+    if(_eyedropHexId){const hel=document.getElementById(_eyedropHexId);if(hel)hel.textContent=hex.toUpperCase();}
+    if(_eyedropCb)_eyedropCb(hex);
+    toast('Renk seçildi: '+hex.toUpperCase());
+  }
+  _eyedropActive=false;
+  cv.style.cursor='';
+  document.getElementById('banner').style.cursor='';
+  _eyedropInputId=null;_eyedropHexId=null;_eyedropCb=null;
+},true);
+
+/* ══ PHOTO INTERACT: MOUSE ZOOM + PAN ══ */
+(function(){
+  let isDragging=false,startX=0,startY=0,startPX=0,startPY=0;
+  const scl=()=>{const bsw=document.getElementById('bsw');return parseFloat(bsw.style.transform?.match(/scale\(([^)]+)\)/)?.[1]||1);};
+  function getLayer(){return document.getElementById('photo-interact');}
+
+  // PAN — mousedown/move/up
+  document.addEventListener('mousedown',e=>{
+    const layer=getLayer();if(!layer||!layer.classList.contains('on'))return;
+    if(!layer.contains(e.target))return;
+    isDragging=true;startX=e.clientX;startY=e.clientY;startPX=pX;startPY=pY;
+    layer.classList.add('dragging');e.preventDefault();
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!isDragging)return;
+    const s=scl();
+    const dx=(e.clientX-startX)/s;
+    const dy=(e.clientY-startY)/s;
+    pX=startPX+dx;pY=startPY+dy;
+    drawPhoto();
+    const pxs=document.getElementById('px-slider');if(pxs)pxs.value=Math.round(pX);
+    const pys=document.getElementById('py-slider');if(pys)pys.value=Math.round(pY);
+  });
+  document.addEventListener('mouseup',()=>{
+    if(!isDragging)return;
+    isDragging=false;
+    const layer=getLayer();if(layer)layer.classList.remove('dragging');
+  });
+
+  // ZOOM — wheel
+  document.addEventListener('wheel',e=>{
+    const layer=getLayer();if(!layer||!layer.classList.contains('on'))return;
+    if(!layer.contains(e.target))return;
+    e.preventDefault();
+    const delta=e.deltaY>0?-0.07:0.07;
+    pSc=Math.max(0.1,Math.min(5,pSc+delta));
+    drawPhoto();
+    const zs=document.getElementById('z-slider');if(zs)zs.value=pSc.toFixed(2);
+  },{passive:false});
+})();
+
+/* ══ CUSTOM FONT UPLOAD ══ */
+function loadCustomFont(inp){
+  if(!inp.files||!inp.files[0])return;
+  const file=inp.files[0];
+  const name=file.name.replace(/\.[^.]+$/,'').replace(/[_\-]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  const family='CustomFont_'+Date.now();
+  const r=new FileReader();
+  r.onload=e=>{
+    const style=document.createElement('style');
+    const ext=file.name.split('.').pop().toLowerCase();
+    const fmt={ttf:'truetype',otf:'opentype',woff:'woff',woff2:'woff2'}[ext]||'truetype';
+    style.textContent=`@font-face{font-family:'${family}';src:url('${e.target.result}') format('${fmt}');font-weight:normal;font-style:normal;}`;
+    document.head.appendChild(style);
+    customFonts.push({name,family});
+    toast(`Font yüklendi: ${name}`);
+    // Add to all open font selectors
+    document.querySelectorAll('select.fsel').forEach(sel=>{
+      const cur=sel.value;
+      sel.innerHTML+=`<option value="'${family}',sans-serif">${name} ★</option>`;
+      sel.value=cur;
+    });
+  };
+  r.readAsDataURL(file);inp.value='';
+}
+function fontOpts(sel){
+  const base=FONTS.map(f=>`<option value="'${f}',sans-serif"${f===sel?' selected':''}>${f}</option>`).join('');
+  const custom=customFonts.map(f=>`<option value="'${f.family}',sans-serif">${f.name} ★</option>`).join('');
+  return base+(custom?`<optgroup label="── Özel Fontlar ──">${custom}</optgroup>`:'');
+}
+
+function removeCustomFont(i){
+  customFonts.splice(i,1);
+  // Refresh ayarlar panel if open
+  if(activeTab==='ayarlar'){document.getElementById('spc').innerHTML=buildHTML('ayarlar');}
+  toast('Font kaldırıldı');
+}
+
+function analyzePhotoForTextBg(){
+  if(!uImg)return;
+  // Sample pixels from the text area (left ~40% of image for right-photo layout)
+  const tmpCv=document.createElement('canvas');
+  tmpCv.width=BW;tmpCv.height=BH;
+  const ctx=tmpCv.getContext('2d');
+  // Draw photo as it would appear
+  ctx.save();ctx.translate(pX,pY);ctx.rotate(pRot*Math.PI/180);
+  const fw=flipH?-1:1,fh=flipV?-1:1;ctx.scale(fw,fh);
+  const w=uImg.naturalWidth*pSc,h=uImg.naturalHeight*pSc;
+  ctx.drawImage(uImg,-w/2,-h/2,w,h);ctx.restore();
+  // Sample a region on the text side
+  const sampleX=imgSide==='right'?20:BW*0.55;
+  const sampleW=Math.round(BW*0.35);const sampleH=Math.round(BH*0.6);
+  const sampleY=Math.round(BH*0.2);
+  let r=0,g=0,b=0,cnt=0;
+  const step2=Math.max(1,Math.round(sampleW/20));
+  try{
+    const imgData=ctx.getImageData(sampleX,sampleY,sampleW,sampleH);
+    for(let i=0;i<imgData.data.length;i+=4*step2){
+      r+=imgData.data[i];g+=imgData.data[i+1];b+=imgData.data[i+2];cnt++;
+    }
+  }catch(e){return;}
+  if(cnt===0)return;
+  r=Math.round(r/cnt);g=Math.round(g/cnt);b=Math.round(b/cnt);
+  // Darken slightly for use as background
+  r=Math.round(r*0.5);g=Math.round(g*0.5);b=Math.round(b*0.5);
+  const hex='#'+[r,g,b].map(v=>Math.min(255,v).toString(16).padStart(2,'0')).join('');
+  // Apply to all 3 text backgrounds (at 0 opacity - just set the color, not the opacity)
+  // Store as the color value but don't change opacity unless user wants it
+  ['ubg','mbg','abg'].forEach(id=>{const el=document.getElementById(id);if(el){el.value=hex;}});
+  ['ubh','mbh','abh'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=hex.toUpperCase();});
+  // Also set panel color suggestion
+  panelColor=hex;
+  toast('Fotoğraftan renk analiz edildi → '+hex.toUpperCase());
+}
 function initReverseSync(){
   ['ust-text','alt-text'].forEach(spanId=>{
     const sp=document.getElementById(spanId);if(!sp)return;
@@ -1273,7 +1630,7 @@ function initReverseSync(){
 function init(){
   scaleBanner();
   document.getElementById('color-panel').style.background=panelColor;
-  rebuildFade();
+  rebuildFade(); // also positions placeholder and interact layer
   ['main-text','ust-text','alt-text'].forEach(id=>{
     const el=document.getElementById(id);
     if(el){el.textContent='';el.style.display='block';el.style.textAlign='center';}
@@ -1282,6 +1639,7 @@ function init(){
     const el=document.getElementById(id);if(el)el.style.display='block';
   });
   setTextPos('mid-right');
+  setLayout('left');
   applyTextInset();
   drawPhoto();
   // Load persisted settings
